@@ -25,7 +25,7 @@ Git no es solo para programadores e ingenieros. Lo que sea que hagas que tenga v
 ## Ejemplo de un archivo de texto de toda la vida
 
 | Versión  | Contenido del archivo| Guardado |
-|:------------|:---------------|:-----|
+|------------|---------------|-----|
 | 1  | Mi nombre es Heriberto Cartas. Soy estudiante de Ingeniería Forestal y en mis tiempos libres corro carreras, mecanografio libros y hago cosas raras con python. | biografía.txt |
 | 2 | Mi nombre es Heriberto Cartas. Soy egresado de Ingeniería Forestal y en mis tiempos libres derribo árboles, mecanografio libros y hago cosas raras con R. | biografia_v2.txt |
 
@@ -34,7 +34,7 @@ Antes de conocer el sistema de control de versiones esta es nuestra única opci�
 Sin embargo, la realidad es que son muy pocos los cambios que ocurrieron en el archivo y no deberiamos guardar todo el archivo de nuevo solo por esos cambios 👇.
 
 | Versión  | Cambios al archivo| Guardado |
-|:------------|:---------------|:-----|
+|------------|---------------|-----|
 | 1  | Mi nombre es Heriberto Cartas. Soy ~~**estudiante**~~ de Ingeniería Forestal y en mis tiempos libres ~~**corro carreras**~~, mecanografio libros y hago cosas raras con ~~**python**~~. | biografía.txt |
 | 2 | Mi nombre es Heriberto Cartas. Soy **egresado** de Ingeniería Forestal y en mis tiempos libres **derribo árboles**, mecanografio libros y hago cosas raras con **R**. | biografia_v2.txt |
 
@@ -50,5 +50,54 @@ Puedes ver como esta el status de tu base de datos haciendo `git status`. Otro c
 
 Una vez ya estas listo y has completado todos estos pasos, quizas puedes llevar tu archivo a un servido remoto porque probablemente ese arhivo vive en un servidor en internet o en un servidor donde quieres que lo vea todo el mundo. Para ello utilizamos el comando git push, el cual te pemite enviar hacia otro repositorio remoto lo que estas haciendo y también con git pull lo puedes traer.
 
-## Ejemplo de comandos de línea de comandos de toda la vida
+# Introducción a la terminal y línea de comandos
+
+## Comandos
+
+`pwd`
+> Muestra la ruta del directorio actual.
+
+`cd` `cd ~`
+> Moverse al directorio home de Linux.
+
+`cd /`
+> Para ir a mi home en windows.
+
+`cd <ruta del directorio>`
+> Permite cambiar y navegar entre directorios.
+
+`ls -l`
+> Lista los archivos de mi carpeta.
+
+`ls -al`
+> Muestra todos los archivos incluso los ocultos y los coloca en una lista.
+
+`clear` `Control + L`
+> Limpia la consola.
+
+`cd ..`
+> Para volver a una capeta anterior.
+
+`mkdir <nombre de la carpeta>`
+> Permite crear un directorio o carpeta.
+
+`touch <nombre del archivo.extensión>`
+> Permite crear un archivo según la extensión especificada.
+
+`cat <nombre del archivo>`
+> Permite visualizar el contenido de un archivo y mostrarlo en la terminal.
+
+`history`
+> Muestra el historial de los comandos que se han hecho.
+
+`rm <nombre del archivo>`
+> Permite borrar un archivo.
+
+`rm -r <nombre del directorio>`
+> Permite borrar un directorio.
+
+`rm -rf .git`
+> Elimina todo el repositorio dejando solo el directorio de trabajo. Util despues de realizar un `git init`.
+
+
 
