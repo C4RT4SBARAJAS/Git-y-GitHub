@@ -99,5 +99,41 @@ Una vez ya estas listo y has completado todos estos pasos, quizas puedes llevar 
 `rm -rf .git`
 > Elimina todo el repositorio dejando solo el directorio de trabajo. Util despues de realizar un `git init`.
 
+`cp <archivo a copiar> <nombre de la copia>`
+> Crea una copia de un archivo dentro de la misma carpeta. Primero se coloca el archivo a copiar, enseguida la copia con un nombre diferente. Si queremos copiar el archivo en una ruta diferente debemos especificarla en `<nombre de la copia>`.
 
+`cp -r <directorio a copia/> <ruta de destino/nombre de la copia>`
+> Permite copiar directorios completos (archivos y subcarpetas) a una ruta especificada.
+
+`mv <old name> <new name>`
+> Cambia del nombre de un archivo o carpeta. Primero se coloca el archivo o carpeta que queremos renombrar, enseguida el nombre del nuevo archivo o carpeta.
+
+`mv <directorio a mover/> <ruta de destino/directorio a mover >`
+> Permite mover un directorio a una ruta diferente conservando el mismo nombre. Sin embargo, este nombre puede ser diferente.
+
+`mv <archivo a mover> <ruta de destino/archivo a mover>`
+> Permite mover un archivo a una ruta diferente convervando el mismo nombre. Sin embargo, este nombre puede ser diferente.
+
+|  Nombre del comando | Descripción  |
+| ------------ | ------------ |
+| `pwd` | Muestra la ruta del directorio actual. |
+| `cd` `cd ~` | Moverse al directorio home de Linux. |
+| `cd /` | Para ir a mi home en windows |
+| `cd <ruta del directorio>` | Permite cambiar y navegar entre directorios. |
+| `ls -l` | Lista los archivos de mi carpeta. |
+| `ls -al` | Muestra todos los archivos incluso los ocultos y los coloca en una lista. |
+| `clear` `Control + L` | Limpia la consola. |
+| `cd ..` | Para volver a una capeta anterior. |
+| `mkdir <nombre de la carpeta>` | Permite crear un directorio o carpeta. |
+| `touch <nombre del archivo.extensión>` | Permite crear un archivo según la extensión especificada. |
+| `cat <nombre del archivo>` | Permite visualizar el contenido de un archivo y mostrarlo en la terminal. |
+| `history` | Muestra el historial de los comandos que se han hecho. |
+| `rm <nombre del archivo>` | Permite borrar un archivo. |
+| `rm -r <nombre del directorio>` | Permite borrar un directorio. |
+| `rm -rf .git` | Elimina todo el repositorio dejando solo el directorio de trabajo. Util despues de realizar un `git init`. |
+| `cp <archivo a copiar> <nombre de la copia>` | Crea una copia de un archivo dentro de la misma carpeta. Primero se coloca el archivo a copiar, enseguida la copia con un nombre diferente. Si queremos copiar el archivo en una ruta diferente debemos especificarla en `<nombre de la copia>`. |
+| `cp -r <directorio a copia/> <ruta de destino/nombre de la copia>` | Permite copiar directorios completos (archivos y subcarpetas) a una ruta especificada. |
+| `mv <old name> <new name>` | Cambia del nombre de un archivo o carpeta. Primero se coloca el archivo o carpeta que queremos renombrar, enseguida el nombre del nuevo archivo o carpeta. |
+| `mv <directorio a mover/> <ruta de destino/directorio a mover>` | Permite mover un directorio a una ruta diferente conservando el mismo nombre. Sin embargo, este nombre puede ser diferente. |
+| `mv <archivo a mover> <ruta de destino/archivo a mover>` | Permite mover un archivo a una ruta diferente convervando el mismo nombre. Sin embargo, este nombre puede ser diferente. |
 
