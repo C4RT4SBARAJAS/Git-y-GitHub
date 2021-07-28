@@ -128,16 +128,37 @@ Una vez ya estas listo y has completado todos estos pasos, quizas puedes llevar 
 7. `\ No newline at end of file` indica que no hay un enter adicional.
 
 ## Enviar un commit sin mensaje 😱
-1. Si guardamos los cambios con un `git commit` sin mensaje lo que provoca es que nos abre un editor de código de básado en lína de comandos llamado (Vim).
+1. Si guardamos los cambios con un `git commit` sin mensaje lo que provoca es que nos abre un editor de código de básado en lína de comandos llamado Vim (del inglés Vi IMproved) es una versión mejorada del editor de texto vi, presente en todos los sistemas UNIX. Otra forma de acceder a Vim es con el comando `vim <nombre dle archivo>`.
+2. Lo primero que nos dice el editor es `# Please enter the commit message for your changes.`. Es decir, agrega un mensaje para tus cambios.
+3. Lo segundo es `Lines starting # with '#' will be ignored, and an empty message aborts the commit.`. Es decir, toda lína dentro del editor que comienze con el simbolo `#` será tomada como comentario o ignorada y que un mensaje bacio abortará el commit.
+4. Estando en el editor de código sin escribir nada más, comenzamos a escribir nuestro mensaje, una vez listo el mensaje necesitamso salir y guradar los cambios. Para ello, escribimos `Control + X`, seguido de `Y` y por último `Enter`.
+5. Los cambios se envian correctamentea al repositorio.
 
+## Comparando commits con git diff
+1. Para compararar un cambio anterior con el cambio más reciente utilizamos el comando `git diff <cambio anterior> <cambio más reciente>`. Esta es la forma en la que git show y git diff comparan los cambios por default.
+2. Para comparar el cambio más reciente con uno anterior, utilizamos el sigueinte orden `git diff <cambio anteior> <cambio más reciente>`.
 
-```flow
-st=>start: Flujo de trabajo en git
-op=>operation: git init
-cond=>condition: Successful Yes or No?
-e=>end: To admin
+## Comparando commits con git diff
+1. Para compararar un cambio anterior con el cambio más reciente utilizamos el comando `git diff <cambio anterior> <cambio más reciente>`. Esta es la forma en la que git show y git diff comparan los cambios por default.
+2. Para comparar el cambio más reciente con uno anterior, utilizamos el sigueinte orden `git diff <cambio anteior> <cambio más reciente>`.
 
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
+## Ciclo básico de trabajo en Git
+![](https://static.platzi.com/media/public/uploads/capture1_44e940e0-77b2-4f04-b76d-d7637b4ca7a7.PNG)
+
+## Ciclo de vida o estado de los archivos
+Cuando trabajamos con Git nuestros archivos pueden vivir y moverse entre 4 diferentes estados:
+- Archivos Untracked: son archivos que NO viven dentro de Git, solo en el disco duro. Nunca han sido afectados por git add, así que Git no tiene registros de su existencia.
+Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo tiempo: staged y untracked. Esto pasa cuando guardas los cambios de un archivo en el área de Staging (con el comando git add), pero antes de hacer commit para guardar los cambios en el repositorio haces nuevos cambios que todavía no han sido guardados en el área de Staging (en realidad, todo sigue funcionando igual pero es un poco divertido).
+- Archivos Tracked: son los archivos que viven dentro de Git, no tienen cambios pendientes y sus últimas actualizaciones han sido guardadas en el repositorio gracias a los comandos git add y git commit.
+- Archivos Unstaged: entiéndelos como archivos “Tracked pero Unstaged”. Son archivos que viven dentro de Git pero no han sido afectados por el comando git add ni mucho menos por git commit. Git tiene un registro de estos archivos, pero está desactualizado, sus últimas versiones solo están guardadas en el disco duro.
+- Archivos Staged: son archivos en Staging. Viven dentro de Git y hay registro de ellos porque han sido afectados por el comando git add, aunque no sus últimos cambios. Git ya sabe de la existencia de estos últimos cambios, pero todavía no han sido guardados definitivamente en el repositorio porque falta ejecutar el comando git commit.
+
+Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo tiempo: staged y untracked. Esto pasa cuando guardas los cambios de un archivo en el área de Staging (con el comando git add), pero antes de hacer commit para guardar los cambios en el repositorio haces nuevos cambios que todavía no han sido guardados en el área de Staging (en realidad, todo sigue funcionando igual pero es un poco divertido).
+
+## Comandos para mover archivos entre los estados de Git
+- git add: nos ayuda a mover archivos del Untracked o Unstaged al estado Staged. Podemos usar git nombre-del-archivo-o-carpeta para añadir archivos y carpetas individuales o git add -A para mover todos los archivos de nuestro proyecto (tanto Untrackeds como unstageds).
+- git reset HEAD: nos ayuda a sacar archivos del estado Staged para devolverlos a su estado anterior. Si los archivos venían de Unstaged, vuelven allí. Y lo mismo se venían de Untracked.
+- git commit: nos ayuda a mover archivos de Unstaged a Tracked. Esta es una ocasión especial, los archivos han sido guardados o actualizados en el repositorio. Git nos pedirá que dejemos un mensaje para recordar los cambios que hicimos y podemos usar el argumento -m para escribirlo (git commit -m "mensaje").
+- git rm: este comando necesita alguno de los siguientes argumentos para poder ejecutarse correctamente:
+git rm --cached: Mueve los archivos que le indiquemos al estado Untracked.
+git rm --force: Elimina los archivos de Git y del disco duro. Git guarda el registro de la existencia de los archivos, por lo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).
