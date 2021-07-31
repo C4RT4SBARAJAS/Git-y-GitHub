@@ -138,10 +138,6 @@ Una vez ya estas listo y has completado todos estos pasos, quizas puedes llevar 
 1. Para compararar un cambio anterior con el cambio más reciente utilizamos el comando `git diff <cambio anterior> <cambio más reciente>`. Esta es la forma en la que git show y git diff comparan los cambios por default.
 2. Para comparar el cambio más reciente con uno anterior, utilizamos el sigueinte orden `git diff <cambio anteior> <cambio más reciente>`.
 
-## Comparando commits con git diff
-1. Para compararar un cambio anterior con el cambio más reciente utilizamos el comando `git diff <cambio anterior> <cambio más reciente>`. Esta es la forma en la que git show y git diff comparan los cambios por default.
-2. Para comparar el cambio más reciente con uno anterior, utilizamos el sigueinte orden `git diff <cambio anteior> <cambio más reciente>`.
-
 ## Ciclo básico de trabajo en Git
 ![](https://static.platzi.com/media/public/uploads/capture1_44e940e0-77b2-4f04-b76d-d7637b4ca7a7.PNG)
 
@@ -185,10 +181,83 @@ Cuando trabajamos con Git nuestros archivos pueden vivir y moverse entre** 4 dif
 3. Existe el comando `git reset`. Este comando nos permite voler a una versión anterior, si le colocamos enfrente la versión anterior a la que queremos volver: `git reset <ID del commit>`. Pero antes hay dos tipos de reset, el duro usando el argumento `--hard` y el suave usando el argumento`--soft`. Si le damos `git reset <ID del commit> --hard` todo vuleve al estado anterior, es el mas peligroso, pero el que más normalmente la gente usa. Si usamos en cambio `git reset <ID del commit> --soft` lo que tengamos en staging sigue en staging, es decir que si has hecho `git add` eso sigue ahí disponible para el próximo commit. Solo que en el directorio de trabajo vulve a la vesión anterior.
 4. Para volver realmente en el tiempo usamos el comando `git reset <ID del commit> --hard`. Lo que pasa es que ahora el HEAD apunta a ese commit. Cuando le damos `git log` es como si todo lo que hubieramos trabajado antes ubiera desaparecido por completo. Hay que tener cuidado porque esto realmente borra todo lo que hiceron antes. Entonces puede ser muy peligroso ejecutarlo. En una forma de volver al pasado de una manera agresiva.
 
-## Visualizar cambios especificos en archivos con git --stat
+## Visualizar cambios especificos en archivos con git log --stat
 
-El comando `git --stat` te permite ver los cambios específicos que se hicieron en cuales archivos a partir del commit. Los cambios se muestran de la siguiente manera, por ejemplo, `README.md | 8 +++++++-` indica el archivo y el número de bytes que cambió. Y de forma más de tallada nos dice `1 file changed, 7 insertions(+), 1 deletion(-)`.
+El comando `git log --stat` te permite ver los cambios específicos que se hicieron en cuales archivos a partir del commit. Los cambios se muestran de la siguiente manera, por ejemplo, `README.md | 8 +++++++-` indica el archivo y el número de bytes que cambió. Y de forma más de tallada nos dice `1 file changed, 7 insertions(+), 1 deletion(-)`.
 
 ## Volver a una versión anterior con git checkout
 Muy útil cuando solo queremos ver como era un archivo o directorio anteriormente.
-Para volver a una versión anterior para un archivo manteniendo el HEAD en el master utilizamos el comando `git checkout <ID commit> <nombre del archivo>`, si queremos guardar esos cambios entonces hacemos un `git commit`. Para volver a una versión para el directorio completo, haciendo este commit el HEAD utilizamos `git checkout <ID commit>`. Si queremos salir sin guradar nada y volver al HEAD master entonces utilizamos el comando `git checkout master <nombre del archivo>` o `git checkout master` para el directorio completo.
+Para volver a una versión anterior para un archivo manteniendo el HEAD en el master utilizamos el comando `git checkout <ID commit> <nombre del archivo>`, si queremos guardar esos cambios entonces hacemos un `git commit`. Para volver a una versión para el directorio completo, haciendo este commit el HEAD utilizamos `git checkout <ID commit>`. Si queremos salir sin guardar nada y volver al HEAD master entonces utilizamos el comando `git checkout master <nombre del archivo>` o `git checkout master` para el directorio completo.
+
+# Git reset vs git remove
+Git reset y git rm son comandos con utilidades muy diferentes, pero aún así se confunden muy fácilmente.
+
+## Git rm
+Este comando nos ayuda a eliminar archivos de git sin eliminar su historial del sistema de versiones. Esto quiere decir que si necesitamos recuperar el archivo solo debemos “viajar en el tiempo” y recuperar el último commit antes de borrar el archivo en cuestión. Para indicarle a git cómo eliminar los archivos que ya no necesitamos en la última versión del proyecto utilizamos:
+- `git rm --cached <archivo>`: Elimina los archivos del área de Staging y del próximo commit pero los mantiene en nuestro disco duro.
+- `git rm --force <archivo>`: Elimina los archivos de Git y del disco duro. Git siempre guarda todo, por lo que podemos acceder al registro de la existencia de los archivos, de modo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).
+
+## Git reset
+Este comando nos ayuda a volver en el tiempo. Pero no como `git checkout` que nos deja ir, mirar, pasear y volver. Con `git reset` volvemos al pasado sin la posibilidad de volver al futuro. Borramos la historia y la debemos sobreescribir. No hay vuelta atrás. Este comando es **muy peligroso** y debemos usarlo solo en caso de emergencia. Hay dos formas de usar `git reset`:
+- `git reset --soft`: borramos todo el historial y los registros de git pero guardamos los cambios que tengamos en **Staging**, así podemos aplicar las últimas actualizaciones a un nuevo commit.
+- `git reset --hard`: borra todo. Todo todito, absolutamente todo. Toda la información de los commits y del área de Staging se borra del historial.
+- `git reset HEAD`: este es el comando para sacar archivos del área de **Staging**. No para borrarlos ni nada de eso, solo para que los últimos cambios de estos archivos no se envíen al último commit, a menos que cambiemos de opinión y los incluyamos de nuevo en **Staging** con `git add`, por supuesto.
+
+### ¿Por qué esto es importante?
+
+Imagina el siguiente caso: hacemos cambios en los archivos de un proyecto para una nueva actualización. Todos los archivos con cambios se mueven al área de **Staging** con el comando `git add`. Pero te das cuenta de que uno de esos archivos no está listo todavía. Actualizaste el archivo pero ese cambio no debe ir en el próximo commit por ahora.
+
+### ¿Qué podemos hacer?
+
+Bueno, todos los cambios están en el área de **Staging**, incluido el archivo con los cambios que no están listos. Esto significa que debemos **sacar ese archivo de Staging** para poder hacer commit de todos los demás.
+
+¡Al usar `git rm` lo que haremos será eliminar este archivo completamente de git!. En este caso no buscábamos eliminar un archivo, solo dejarlo como estaba y actualizarlo después, no en este commit.
+
+En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos cambios de **Staging** a **Unstaged**. Seguiremos teniendo los últimos cambios del archivo, el repositorio mantendrá el archivo (no con sus últimos cambios pero sí con los últimos en los que hicimos commit) y no habremos perdido nada.
+
+# Comandos de git
+
+## Comandos para colaborar
+
+| Nombre del comando | Descripción |
+| ------------ | ------------ |
+| `git log --oneline` | Muestra el ID del commit y el título del commit. |
+| `git log --decorate` | Muestra donde se encuentra el head point en el log. |
+| `git log --stat` | Explica el número de líneas que se cambiaron brevemente. |
+| `git log -p` | Explica el número de líneas que se cambiaron y te muestra que se cambió en el contenido. |
+| `git shortlog` | Indica que commits ha realizado un usuario, mostrando el usuario y el titulo de sus commits.  |
+| `git log --graph --decorate --oneline ` | Muestra mensajes personalizados de los commits. |
+| `git log --pretty=format:"%cn hizo un commit %h el dia %cd"` | Muestra mensajes personalizados de los commits. |
+| `git log -<número>` | Limitamos el número de commits |
+| `git log --after=“2021-7-29”` | Commits para localizar por fechas. |
+| `git log --after=“yesterday”` | Commits para localizar por fechas. |
+| `git log --after=“2021-7-29” --before=“today”` | Commits para localizar por fechas. |
+| `git log --author=“nombre de algún autor”` | Commits realizados por autor que cumplan exactamente con el nombre. |
+| `git log --grep="Modifiqué el REDME.md"”` | Busca los commits que cumplan tal cual está escrito entre las comillas. |
+| `git log --grep="modifiqué el redme.md" -i` | Busca los commits que cumplan sin importar mayúsculas o minúsculas. |
+| `git log – README.md` | Busca los commits en un archivo en específico. |
+| `git log -S “<contenido a busca>”` | Busca los commits con el contenido dentro del archivo. |
+| `git log > log.txt` | guardar los logs en un archivo txt |
+
+## Comandos de un flujo de trabajo
+
+| Nombre del comando | Descripción |
+| ------------ | ------------ |
+| `git commit -am "<mensaje>"` | Fusiona los comandos `git add` y `git commit` . Solo se puede usar si al archivo ya se le ha hecho un **add** anteriormente. |
+| `git commit -a` | Ejecuta el comando `git add` y no permite enviar un commit a traves del editor de código Vim. |
+
+# Flujo de trabajo básico con un repositorio remoto
+
+Para manterner una historia entera de tu proyecto solo tienes que hacer el flujo de trabajo común, es decir, inicializar el repositorio con `git init`, agregar los cambios con `git add <archivo>` y eviar los cambios al repositorio con  `git commit -m "<comentario>"`. 
+
+Pero ¿qué pasa cuando trabajas con otras personas?, ¿qué pasa cuando trabajas con un equipo de trabajo y el equipo de trabajo tiene un servidor donde esta la versión unificada de multiples desarrolladores? Cuando tu trabajas en este tipo de equipos necesitas un servidor o respositorio remoto. Es un lugar donde tienes el mismo repositorio en el que estás trabajando pero todo el mundo le manda datos para allá, trabajan el local y cuando terminan los volven a mandar para que el resto del equipo los pueda ver. Tipicamente esto es GitHub, GitLab, BitBucket, entre otros.
+
+Para traernos datos de un servidor remoto lo que hacemos es envez de dar `git init` damos `git clone url` es decir clonar. Para ello debemos proporcionar la dirección (url) del repositorio remoto. Lo que hace `git clone url` es que se trae los archivos a dos lugares. Se trae una copia del master a tu directorio o carpeta de trabajo y crea la base de datos de todos los cambios historicos en el repositorio local. ¿Entonces como cambia esto mi flujo de trabajo? Simplemente siguo haciendo haciando `git add` cuando quiero añadir archivos a Staging y `git commit` cuando quiero enviarlos al repositorio local. Pero cuando el último commit en el HEAD esta listo para ser enviado al repositorio remoto hago un `git push`. Con este comando evio todo al servidor remoto. Y si hay confligtos lido con ellos.
+
+Cuando ya estoy conectado al repositorio remoto, ya lo clone, pero quiero traermen una actualización porque alguién más cambio algo. Ahí lo que se hace es un `git fetch`, esto me trae la actualizaciión a mi repositorio local pero no me lo copia a mis achivos. Para que me los copie a mis archivos tengo que hacer un git `git merge`. Pero hay un comando que fusiona ambos conceptos y se llama el comando `git pull`. De esta manera siempre tengo una copia actualizada de lo último que paso en el repositorio.
+
+## Introducción a las ramas o branches de Git
+
+Las ramas son formas en las que nosotros podemos hacer cambios sin afectar la principal rama.
+
+**Master** es nuestra rama principal. En esa rama nosotros tenemos toda nuestra historia de commits. El commit más reciente es el que nosotros llamados el HEAD. 
