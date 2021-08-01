@@ -245,6 +245,8 @@ En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos c
 | ------------ | ------------ |
 | `git commit -am "<mensaje>"` | Fusiona los comandos `git add` y `git commit` . Solo se puede usar si al archivo ya se le ha hecho un **add** anteriormente. |
 | `git commit -a` | Ejecuta el comando `git add` y no permite enviar un commit a traves del editor de código Vim. |
+| `git reset` | Te permite eliminar commits |
+| `git branch -d` | Te permite eliminar ramas |
 
 # Flujo de trabajo básico con un repositorio remoto
 
@@ -271,3 +273,22 @@ Para moverme o cambiar de rama utulizamos el comando `git checkout <rama creada>
 **Antes** de fusionar ramas hay que tener en cuenta a que rama queremos traer esos cambios o dónde quiero que ocurra la fusión, de lo contrario los cambios ocurrirán en la rama donde estoy. Debiendo ejecutarse siempre desde la **rama master**, la rama principal. Por lo que necesitaremos movernos de rama **master** con el comando `git checkout`. Recuerdemos que al ejecutar el comando `git checkout` para cambiar de rama o commit puedes perder el trabajo que no hayas guardado. Guarda tus cambios antes de hacer `git checkout`.
 
 Para fusionar ramas utilizamos el comando `git merge <nombre de la rama que queremos traer>`. Este comando nos permite crear un nuevo commit con la combinación de las dos ramas. Debido a que es un commit siempre te pedirá un mensaje. De lo contrario no es un **merge**. Y eso es todo. Al dar `git log` podemos econtrar el último commit de la `<rama creada>`, el último commi de la rama **master** y el commit más reciente, un **merge**, producto de la fusión de estas dos ramas.
+
+# Resolución de conflictos al hacer un merge
+
+Git es muy inteligente y puede resolver algunos conflictos automáticamente: cambios, nuevas líneas, entre otros. Pero algunas veces no sabe cómo resolver estas diferencias, por ejemplo, cuando dos ramas diferentes hacen cambios distintos a una misma línea.
+
+Esto lo conocemos como **conflicto** y lo podemos resolver manualmente, solo debemos hacer el merge, ir a nuestro editor de código y elegir si queremos quedarnos con alguna de estas dos versiones o algo diferente. Algunos editores de código como VSCode nos ayudan a resolver estos conflictos sin necesidad de borrar o escribir líneas de texto, basta con elegir una de las dos opciones **Aceptar el cambio actual** que es del HEAD (***Accept Current Change***) o **Aceptar el cambio que viene** que es de la `rama creada` (***Accept Incomin Change***). Después debemos guardar y commitear los cambios con `git commit -am "<mensaje>"`
+
+Recuerda que siempre debemos crear un nuevo commit para aplicar los cambios del merge. Si Git puede resolver el conflicto hará commit automáticamente. Pero, en caso de no pueda resolverlo, debemos solucionarlo y hacer el commit.
+
+Los archivos con conflictos por el comando `git merge` entran en un nuevo estado que conocemos como **Unmerged**. Funcionan muy parecido a los archivos en estado Unstaged, algo así como un estado intermedio entre Untracked y Unstaged, solo debemos ejecutar `git add` para pasarlos al área de staging y `git commit` para aplicar los cambios en el repositorio.
+
+# Cambios en GitHub: de master a main
+
+Desde el 1 de octubre de 2020 GitHub cambió el nombre de la rama principal: ya no es ***master*** (como aprenderás en el curso) sino ***main***.
+
+Este derivado de una profunda reflexión ocasionada por el movimiento **#BlackLivesMatter**.
+
+La industria de la tecnología lleva muchos años usando términos como master, slave, blacklist o whitelist y esperamos pronto puedan ir desapareciendo.
+
