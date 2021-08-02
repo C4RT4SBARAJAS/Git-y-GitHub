@@ -316,7 +316,7 @@ Una vez creado el respositorio, se creara la URl del respositorio así como todo
 2. Para decirlo a Git que queremos agregar un origen remoto de nuestros archivos utilizamos el comando `git remote add origin <dirección del respositorio remoto en GitHub>`. Para agregar la `dirección del respositorio remoto en GitHub` utilizamos la pestaña **Code** donde nos da la opción de ***Clone*** por **HTTPS** O **SSH**. Copiamos la URL elegida al comando `git remote` y damos **Enter**. Lo que ocurre es que se agrega un **origen remoto** al cual podemos hacer **fetch** y **push**.
 3. Para visualizar esta información utilizamos el comando `git remote -v`. Mostrando además la URL elegida para el origen remoto.
 4. Lo primero que tienes que hacer es integrar los cambios remotos antes de hacer un **push**. Ya que si creaste un archivo en GitHub, este respositorio remoto pasa a ser el **master** ahora. Para traernos estos cambios utilizamos el comando `git pull origin master`.
-5. Para eviar los archivos que tenemos en local al repositorio en GitHub utilizamos el comando `git push origin master`. Si clonaste por **HTTPS** te pedira tu usuario y contraseña de GitHub para ejecutar este comando. Para comprobar este envio, recargamos GitHub en internet. Y listo.
+5. Para eviar los archivos que tenemos en local, junto con el historial de commits al repositorio en GitHub utilizamos el comando `git push origin master`. Si clonaste por **HTTPS** te pedira tu usuario y contraseña de GitHub para ejecutar este comando. Para comprobar este envio, recargamos GitHub en internet. Y listo. Si usamos `git log` podemos visualizar lo siguiente `(HEAD -> master, origin/master)`, donde el HEAD ahora también le apunta al origen remoto.
 
 
 # Interpretando el primer git pull origin master
