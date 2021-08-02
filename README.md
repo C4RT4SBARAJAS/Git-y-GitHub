@@ -292,3 +292,37 @@ Este derivado de una profunda reflexión ocasionada por el movimiento **#BlackLi
 
 La industria de la tecnología lleva muchos años usando términos como master, slave, blacklist o whitelist y esperamos pronto puedan ir desapareciendo.
 
+# ¿Qué es GitHub?
+
+GitHub es un sitio web que tiene por dentro un super servidor de Git donde culquiera de nosotros puede clonar su repositorio o clonar su repositorio y compartirlo con otros personas, de tal manera que no solo estes tú creando tu propio código. También es una especie de interfaz visual de tus repositorios de tal manera que no tengas que vivir en la consola todo el tiempo para hacer ciertos cambios. Y es una de las herramientas colaborativas más importantes que existe en el mundo del desarrollo. Mucha gente lo llama la red social de los programadores porque tus repositorios son básicamente tu portafolio de proyectos como programador, entonces puedes organizarlos de tal manera que la gente vea qué es lo que tu sabes y puedes hacer.
+
+# Crear un respotorio en GitHub
+
+1. Lo primero que debemos hacer es crear una cuenta en GitHub.
+2. Damos click en **New repository**.
+3. Agregamos un **Repository name**.
+4. De manera ***optional*** podemos agregar una **Description**.
+5. Decidimos si queremos que nuestro repositorio sea **Public** o **Private**.
+6. Decidimos si queremos **Initialize this repository with a README**. Este es un archivo con extensión .md que se va a ver en el instante que una persona entre al repositorio en GitHub. Esto es una muy buena práctica.
+7. Decidimos si queremos **Add .gitignore**.
+8. Decidimos si queremos **Add a license**. Estas son licencias a traves de las cuales puedes publicar tu código. Licencias de código abierto o semiabierto, etc.
+
+Una vez creado el respositorio, se creara la URl del respositorio así como todos los archivos creados. Si decidimos inicializar con un `README.md` nos aparecera ese archivo, de lo contrario no nos aparecera ninguno hasta que creemos algúno. Si queremos ver el archivo damos click en él y se nos mostrarán pestañas como **Row**, la cual muestra el código Markdown del archivo, **Blame**, la cual muestra quién ha hecho tales cambios y los cambios. Y **history** muestra la historia del archivo, los commits, es lo mismo que hacer un `git log` dentro de nuestro respositorio.
+
+
+# Traer cambios del respositorio remoto al respositorio local
+
+1. Para hacerlo primero debemos ubicarnos en el directorio o respositorio correcto.
+2. Para decirlo a Git que queremos agregar un origen remoto de nuestros archivos utilizamos el comando `git remote add origin <dirección del respositorio remoto en GitHub>`. Para agregar la `dirección del respositorio remoto en GitHub` utilizamos la pestaña **Code** donde nos da la opción de ***Clone*** por **HTTPS** O **SSH**. Copiamos la URL elegida al comando `git remote` y damos **Enter**. Lo que ocurre es que se agrega un **origen remoto** al cual podemos hacer **fetch** y **push**.
+3. Para visualizar esta información utilizamos el comando `git remote -v`. Mostrando además la URL elegida para el origen remoto.
+4. Lo primero que tienes que hacer es integrar los cambios remotos antes de hacer un **push**. Ya que si creaste un archivo en GitHub, este respositorio remoto pasa a ser el **master** ahora. Para traernos estos cambios utilizamos el comando `git pull origin master`.
+5. Para eviar los archivos que tenemos en local al repositorio en GitHub utilizamos el comando `git push origin master`. Si clonaste por **HTTPS** te pedira tu usuario y contraseña de GitHub para ejecutar este comando. Para comprobar este envio, recargamos GitHub en internet. Y listo.
+
+
+# Interpretando el primer git pull origin master
+
+Nos muestra una advertencia o warning. La cual nos dice que no hay commits comunes. Esto por se la primera vez en reslizarse un `git pull` y por ser proyectos totalmente distintos. Nos muestra los cambios que existen en **deltas**. También me indica que la **branch master** es el **FETCH_HEAD**. Y que ahora tengo una **[new branch] master** que es **origin/master**. Ahora ya estoy conectado.
+
+Si te aparece el siguiente **error**: `fatal: refusing to merge unrelated histories`. No te preocupes es normal, esto pasa cuando usas una **conexión** por **HTTPS**. Para solucionarlo utiliza el siguiente comando: `git pull origin master --allow-unrelated-histories`. Esto me permite **fusionar** lo que tengo en remoto con lo que tengo en local. Debido a que es un **merge** tendrás que escribir un **mensaje**. Ahora ya quedo todo listo. Los archivos creados en GitHub ahora están en local.
+
+Si usaste una **conexión** por **SSH** este **error** no te aparecerá. El comando se abrá ejecutado sin problemas la primera vez.
