@@ -326,3 +326,87 @@ Nos muestra una advertencia o warning. La cual nos dice que no hay commits comun
 Si te aparece el siguiente **error**: `fatal: refusing to merge unrelated histories`. No te preocupes es normal, esto pasa cuando usas una **conexión** por **HTTPS**. Para solucionarlo utiliza el siguiente comando: `git pull origin master --allow-unrelated-histories`. Esto me permite **fusionar** lo que tengo en remoto con lo que tengo en local. Debido a que es un **merge** tendrás que escribir un **mensaje**. Ahora ya quedo todo listo. Los archivos creados en GitHub ahora están en local.
 
 Si usaste una **conexión** por **SSH** este **error** no te aparecerá. El comando se abrá ejecutado sin problemas la primera vez.
+
+# ¿Qué son las llaves públicas y privadas?
+
+Piensa en la siguiente situación: estamos tu y yo,  en ese mar azul llamado internet. Y tú me quieres mandar un **mensaje secreto**. Lo que tu quieres es que nadie se entere de este **mensaje secreto**, tu quieres que me llegué a mi. Así que me lo envias por internet. Pero en el proceso lo pueden intervenir. Entonces, ¿qué se hace en estos casos cuando tengo un **mensaje secreto** que no queremos que nadie lo descubra?
+
+Lo que se hace es cifrarlo, le colocas una contraseña, y una vez me llega a mí, yo utilizo la misma contraseña y obtengo el mensaje perfecto. El problema es ¿cómo envias esa contraseña? Porque si alguíen intercepta la contraseña lo va a poder decifrar. Entonces se inventaron un algoritmo que se llama llaves públicas y llaves privadas, que es también conocido como cifrado asimétrico de un solo camino.
+
+# Cómo funcionan las llaves públicas y privadas
+
+Funciona de la siguiente manera, si yo quiero que tu me envies ese **mensaje secreto**, yo voy a crear algo especial que se llama una llave pública y una llave privada. Estas llaves se crean con un proceso algoritmico. Las llaves están vinculadas matemáticamente una con la otra, lo que significa que, lo que yo cifre con la llave pública solo lo abre mi llave privada. La llave privada por su propio nombre es privada y solamente esta conmigo.
+
+Ahora que yo cree estas llaves, las tengo que compartir. Lo que yo hago es que, yo te mando a tí mi llave pública. Te la mando por internet y tu la recibes. Y esa llave pública es como un proceso matemático, ese proceso matemático lo que me permite es convertir el **mensaje secreto** en algo completamente oculto. Y como la made por internet es completamente posible que alguíen la intercepte.
+
+Y esta es la magia: lo que vamos a hacer es que tú copias una versión personal de mi llave pública. Y con esa llave pública tu haces un proceso matemático, el cual es cifrar el mensaje con mi llave pública que te envie, y a traves de ese proceso se genera un nuevo mensaje, el cual es algo completemente imposible de decifrar. Un mensaje cifrado. Dejando a los Hackers sin ninguna opción de poder optener el mensaje. ¿Pero como lo obtengo yo?
+
+Para que yo pueda obtener el mensaje, yo copio ese mensaje cifrado y uso mi llave privada para convertirlo de regreso en las palabras que me enviaste tal cual. Y eso esa es la magia de una llave pública y privada.
+
+Lo importante es que tú que me vas a enviar un **mensaje secreto**, mantengas ese mensaje secreto. Que viva en tu entorno local y que no le digas a nadie qu esta ahí. Y cuando me lo quieres eviar lo cifres con mi llave para que yo lo decifre con mi llave privada y obtenga el mensaje tal cual.
+
+Ahora si lo quiero hacer al reves, entonces tú creas una llave pública y privada. Y esta llave pública me la mandas a mi. Y yo cifro el mensaje con tu llave pública, te lo envio y con tu llave privada decifras el mensaje.
+
+Entonces cuando se hace ese compatir de dos llaves públicas entre dos personas, mientras mantengan sus llaves privadas. Es lo que les permite a esas dos personas tener comunicacines completamente seguras, y que nadie los intercepte.
+
+# Resumen de las llaves públicas y privadas
+
+Las llaves públicas y privadas nos ayudan a cifrar y descifrar nuestros archivos de forma que los podamos compartir sin correr el riesgo de que sean interceptados por personas con malas intenciones.
+
+La forma de hacerlo es la siguiente:
+
+1. Ambas personas deben crear su llave pública y privada.
+2. Ambas personas pueden compartir su llave pública a las otras partes (recuerda que esta llave es pública, no hay problema si la “interceptan”).
+3. La persona que quiere compartir un mensaje puede usar la llave pública de la otra persona para cifrar los archivos y asegurarse que solo puedan ser descifrados con la llave privada de la persona con la que queremos compartir el mensaje.
+4. El mensaje está cifrado y puede ser enviado a la otra persona sin problemas en caso de que los archivos sean interceptados.
+5. La persona a la que enviamos el mensaje cifrado puede usar su llave privada para descifrar el mensaje y ver los archivos.
+
+***Puedes compartir tu llave pública pero nunca tu llave privada.***
+
+# Llaves públicas y privadas en Git & GitHub
+
+Recuerda que cuando te conectaste a GitHub pusiste tu nombre de usuario y contraseña. Al hacerlo esto tiene dos problemas:
+1. Siempre tienes que estar haciendolo.
+2. En principio esto es una conexión segura. Es **HTTPS**, es igual a cuando te conectas a un sitio web y tiene el candadito. Sin embargo el nombre de usuario y contraseña se están guardando en tu entorno local, eso significa que si en algún momento te roban tu laptop, eres vulnerable a PassWord cracking. A que crakeen la contraseña de tu repositorio. Y esto es muy problemático. Pueden agregar huecos de seguridad, esta es la forma en la que los sitios web son hackeados.
+
+Para evitar eso tenemos que agregar **una capa de seguridad mucho más fuerte**. Es decir, crear un entorno de **llaves públicas y privadas en Git y GitHub**.
+
+Ventajas de usar llaves públicas y privadas en Git y GitHub:
+
+1. La seguridad es mas fuerte.
+2. No tienes que volver a agregar nombre de usuario y contraseña.
+
+# Cómo funcionan las llaves públicas y privadas en Git Y GitHub
+
+Funciona de la siguiente manera:
+
+1. En tu entorno local vas a crear una llave privada y una llave pública.
+2. Una ves las creas le vas a enviar esa llave pública a GitHub a tu repositorio. Le vas a decir a GitHub, para este repositorio quiero que uses esta llave pública de mi llave privada que va a seguri siendo privada en mi computadora.
+3. Y eso lo conectas por un protocolo nuevo. En lugar de conectarnos a nuestro respositorio por HTTPS, vamos a conectarnos por un protocolo llamado SSH, también conocido como (Secure Shell).
+5. GitHub es muy inteligente, así que en la primera conexión se va a dar cuenta que le enviaste una llave pública que esta relacionada con tu llave privada, y te va a enviar cifrado con tu llave pública su propia llave pública de GitHub. Porque GitHub también tiene su propia llave privada. Esto ocurre de manera automática no hay que hacer nada. Automáticamente GitHub te va a enviar esa llave y tu la vas a conectar.
+6. Como tú tienes la llave pública de GitHub cifrada y GitHub tiene tu llave pública, a partir de ahora puede haber una conexión de doble camino 100% cifrada por SSH y ya nunca más tienes que agregar contraseña.
+
+Algo a agregar es que:
+
+1. La llave privada que tu crees se le pued agregar una contraseña encima para hacerla aún mas fuerte y ún más poderosa.
+3. Adicionalmente a eso tu deberías estar cifrando tu disco. Los discos se cifran en Windows con Bidloquer.
+
+# Configura tus llaves SSH en local
+
+**NOTA: las llaves SSH no son por repositorio o por proyecto. Sino por persona.**
+
+Antes de hacer esto asegurate de tener el mismo correo electrónico de GitHub en tu configuración en local. Para verificarlo usamos el comando `git config -l`. Sino para hacerlo puedes repetir los pasos del apartado ***Configuración de Git***.
+
+Vamos a crear una serie de llaves exclusivamente para ti. Para ello:
+
+1. Nos dirigimos al HOME usando el comando `cd`.
+2. Para crear la llave SSH utilizamos el comando `ssh-keyen -t rsa- -b 4096 -C "<tu email en GitHub>"`. El número **4096** indica la complejidad del algoritmo. Y damos Enter.
+3. Ésto nos dira **generando llave publica y privada**. Y también **nos dira dónde debemos guardar la llave**. Aquí puedes colocar otra carpeta. Pero honestamente no se los recomiendo porque por defecto te la guarda en el HOME. Por eso es importante dirigirnos al HOME antes de crear la llave. La ruta se vería algo así: `(/home/<nombre de usuario>/.ssh/id_rsa>)`. Como podemos observar también me crea una carpeta `.ssh`, la cual es una carpeta oculta. Y un archivo `id_rsa` sin extención. No hagas nada simplemente da un **Enter**.
+4. Ahora nos pedirá un **Passphrase**. Es decir, la contraseña adicional de texto que le vas a poner a tu llave pública y privada. Tu decides si colocarle un passphrase o no. Yo en general creo que sí. Pero sino, simple mente da dos **Enter** más.
+5. Y listo. Te indica que tu tu identificación ha sido guardada en: `/home/<nombre de usuario>/.ssh/id_rsa>`. Te indica que tu llave pública ha sido guardada en `/home/<nombre de usuario>/.ssh/id_rsa.pub>`. Y te genera un **fingerprint** y un **randomart image**. Estas son maneras de cofirmar que tu llave es de verdad.
+
+No es suficiente con lo que hicimos. El procedimiento es el mismo en Windows y Linux, pero en Mac no. Porque una vez tienes tu llave la tienes que agregar al entorno. Es decir, que el sistema operativo donde tu trabajas sepa que la llave existe. En Windows o Linux:
+
+1. Tienes que revisar que el servido de llaves SSH este prendido. Para ello utilizamos el comando `eval $(ssh-agend -s)`. Al ejecutarlo te tiene que salir algo así: `Agent pid <numero>`. El `<numero>` indica que el proceso está corriendo. Entonces todo está bien.
+2. El siguiente paso es agregar la llave a nuestro sistema, decirle que existe. Para ello tenemos que recordar donde la creamos: `(/home/<nombre de usuario>/.ssh/id_rsa>)` es decir en el HOME. Para dirigirnos ahí usamos el comando `cd`.
+3. Una vez en el HOME utilizamos el comando `ssh-add ~/.ssh/id_rsa`. Nos muestara las dos llaves: `id-rsa` y `id-rsa.pub`. Debo agregar la llave privada la que no tiene extensión. Así que volvemos a ejecutar el comando `ssh-add ~/.ssh/id_rsa`. Y listo.
