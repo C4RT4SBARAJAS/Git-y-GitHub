@@ -310,10 +310,10 @@ GitHub es un sitio web que tiene por dentro un super servidor de Git donde culqu
 Una vez creado el respositorio, se creara la URl del respositorio así como todos los archivos creados. Si decidimos inicializar con un `README.md` nos aparecera ese archivo, de lo contrario no nos aparecera ninguno hasta que creemos algúno. Si queremos ver el archivo damos click en él y se nos mostrarán pestañas como **Row**, la cual muestra el código Markdown del archivo, **Blame**, la cual muestra quién ha hecho tales cambios y los cambios. Y **history** muestra la historia del archivo, los commits, es lo mismo que hacer un `git log` dentro de nuestro respositorio.
 
 
-# Traer cambios del respositorio remoto al respositorio local
+# Traer cambios del respositorio remoto al respositorio local y agregar un origen remoto
 
 1. Para hacerlo primero debemos ubicarnos en el directorio o respositorio correcto.
-2. Para decirlo a Git que queremos agregar un origen remoto de nuestros archivos utilizamos el comando `git remote add origin <dirección del respositorio remoto en GitHub>`. Para agregar la `dirección del respositorio remoto en GitHub` utilizamos la pestaña **Code** donde nos da la opción de ***Clone*** por **HTTPS** O **SSH**. Copiamos la URL elegida al comando `git remote` y damos **Enter**. Lo que ocurre es que se agrega un **origen remoto** al cual podemos hacer **fetch** y **push**.
+2. Para decirlo a Git que queremos agregar un origen remoto de nuestros archivos utilizamos el comando `git remote add origin <dirección del respositorio remoto en GitHub>`. Para agregar la `<dirección del respositorio remoto en GitHub>` utilizamos la pestaña **Code** en GitHub donde nos da la opción de ***Clone*** por **HTTPS** O **SSH**. Copiamos la URL elegida al comando `git remote` y damos **Enter**. Lo que ocurre es que se agrega un **origen remoto** al cual podemos hacer **fetch** y **push**.
 3. Para visualizar esta información utilizamos el comando `git remote -v`. Mostrando además la URL elegida para el origen remoto.
 4. Lo primero que tienes que hacer es integrar los cambios remotos antes de hacer un **push**. Ya que si creaste un archivo en GitHub, este respositorio remoto pasa a ser el **master** ahora. Para traernos estos cambios utilizamos el comando `git pull origin master`.
 5. Para eviar los archivos que tenemos en local, junto con el historial de commits al repositorio en GitHub utilizamos el comando `git push origin master`. Si clonaste por **HTTPS** te pedira tu usuario y contraseña de GitHub para ejecutar este comando. Para comprobar este envio, recargamos GitHub en internet. Y listo. Si usamos `git log` podemos visualizar lo siguiente `(HEAD -> master, origin/master)`, donde el HEAD ahora también le apunta al origen remoto.
@@ -410,3 +410,23 @@ No es suficiente con lo que hicimos. El procedimiento es el mismo en Windows y L
 1. Tienes que revisar que el servido de llaves SSH este prendido. Para ello utilizamos el comando `eval $(ssh-agend -s)`. Al ejecutarlo te tiene que salir algo así: `Agent pid <numero>`. El `<numero>` indica que el proceso está corriendo. Entonces todo está bien.
 2. El siguiente paso es agregar la llave a nuestro sistema, decirle que existe. Para ello tenemos que recordar donde la creamos: `(/home/<nombre de usuario>/.ssh/id_rsa>)` es decir en el HOME. Para dirigirnos ahí usamos el comando `cd`.
 3. Una vez en el HOME utilizamos el comando `ssh-add ~/.ssh/id_rsa`. Nos muestara las dos llaves: `id-rsa` y `id-rsa.pub`. Debo agregar la llave privada la que no tiene extensión. Así que volvemos a ejecutar el comando `ssh-add ~/.ssh/id_rsa`. Y listo.
+
+# Conexión a GitHub con SSH
+
+Las llaves están creadas. Tenemos una **carpeta .ssh** en el **HOME** de tu entorno **local**. Y recuerda **siempre crea una llave pública y privada por cada computadora que uses**. Para hacer la conexión a GitHub:
+
+1. Abres la llave pública ya sea con un editor de código o usando el comando `cat id_rsa.pub` para ver el contendio. Y copias.
+2. Vas a tu perfil en GitHub. A **Settings**, a **SSH and GPG keys**, New SSH key. Agregas un **Title**, es decir, el nombre que le quieras dar a la llave, de preferencia el nombre de tu computadora y en **Key** pegas la llave. Click en **Add SSH key**.
+3. A continuación me pide mi **contraseña** para continuar. Y listo.
+
+# Cambiar la conexión del origen remoto de mi repositorio por SSH
+
+Luego de crear nuestras llaves SSH podemos entregarle la llave pública a GitHub para comunicarnos de forma segura y sin necesidad de escribir nuestro usuario y contraseña todo el tiempo.
+
+1. Para hacerlo primero debemos ubicarnos en el directorio o respositorio correcto.
+2. Para decirlo a Git que queremos agregar un origen remoto de nuestros archivos utilizamos el comando `git remote set-url origin <dirección del respositorio remoto en GitHub>`. Para agregar la `<dirección del respositorio remoto en GitHub>` utilizamos la pestaña **Code** en GitHub donde nos da la opción de ***Clone*** por **HTTPS** O **SSH**. Copiamos la URL por **SSH** al comando `git remote` y damos **Enter**. Lo que ocurre es que se cambia la URL del **origen remoto** . Así que nos crea una nueva URL a la cual podemos hacer **fetch** y **push**.
+3. Para visualizar estos cambios utilizamos el comando `git remote -v`. Mostrando la nueva URL por SSH para el origen remoto.
+4. Para probar este cambio a SSH tenemos que hacer cambios al repositorio, entonces agregamos y comiteamos con`git commit -am "<mensaje>"`, traemos cambios del remoto `git pull origin master` y `git push origin master` enviamos los cambios al remoto. Y listo.
+5. Para comprobar este envio recargamos GitHub en internet. Como pudiste observar no te pidio nombre de usuario y contraseña.
+
+Ahora ya tengo conectado Git con GitHub, ya tengo funcionando SSH, mi vida es perfecta.
