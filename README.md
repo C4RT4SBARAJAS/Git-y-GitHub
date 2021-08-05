@@ -247,6 +247,17 @@ En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos c
 | `git commit -a` | Ejecuta el comando `git add` y no permite enviar un commit a traves del editor de código Vim. |
 | `git reset` | Te permite eliminar commits |
 | `git branch -d` | Te permite eliminar ramas |
+| `git log --all` | Nos muestra todos los commits que hemos hecho historicamente. |
+| `git log --all --graph` | Te muestra de manera visual como funcionan las ramas o branches. |
+| `git log --all --graph --decorate --oneline` | Muestra toda la hitoria de commit desde que arranco el proyecto de manera compremida. |
+| `alias <nombre del alias>="<línea de comandos>"` | Te permite crear un alias en Linux. Se guarda de manera temporal durante tu sesión actual en la Terminal. |
+| `<nombre del alias>` | Ejecuta un alias en Linux. Debiendo crear el alias primero. |
+| `git config alias.<nombre del alias>`  | Guarda un alias en Git para un solo respositorio. |
+| `git config --global alias.<nombre del alias>` | Guarda un alias en Git de manera global para todos los repositorios. |
+| `git <nombre del alias>` | Ejectua un alias guardado en Git. |
+| `alias` | Te permite ver todos los alias creados. |
+| `unalias <nombre del alias>` | Elimina un alias. |
+| `git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all` | Super comando en Git |
 
 # Flujo de trabajo básico con un repositorio remoto
 
@@ -430,3 +441,16 @@ Luego de crear nuestras llaves SSH podemos entregarle la llave pública a GitHub
 5. Para comprobar este envio recargamos GitHub en internet. Como pudiste observar no te pidio nombre de usuario y contraseña.
 
 Ahora ya tengo conectado Git con GitHub, ya tengo funcionando SSH, mi vida es perfecta.
+
+# Tags y versiones en Git y GitHub
+
+Los tags nos permiten crear versiones para nuestro proyecto o categorizar que está listo, es decir, "Hasta aquí llego mi proyecto, esto es lo que voy a enviar". Son utiles en GitHub, en el sitio web, porque es la forma en que usuarios de código abierto u otras personas pueden ver qué versión ocurrió. Son rara vez útiles dentro del proyecto excepto si quieres dejar un registro "Aquí fue donde quede". En mas como referencia interna. Para crear un tag debemos:
+
+1. Visualizar la historia de nuestros commits con el comando`git log --all --graph --decorate --oneline`, el cual nos permite visualizar la versión corta de nuestros commits y debemos decidir qué commit queremos etiquetar o versionar,  por ejemplo, este commit `69a09ec`.
+2. Para crear el tag utilizamos el comando `git tag -a <nombre de la versión> -m "<mensaje>" <commit>`. Pudiendo verse de la siguente forma: **git tag -a v0.1 -m "Esta es la versión 0.1 del proyecto" 69a09ec**.
+3. Para visualizar todos los tags creados utilizamos comando `git tag`. Para visualizar qué commit está asignado a tal tag utilizamos el comando `git show-ref --tags`.
+4. Antes hacemos `git pull origin master` para traernos los camibos. Y por buenas practicas.
+5. Para enviar el tag a GitHub utilizamos el comando `git push origin --tags`. Y listo.
+6. Para visualizar estos cambios nos rigimos en GitHub a **Branches** y después a **Tags**. Y veremos el `<nombre de la versiión>`.
+
+Si queremos **elimar un tag** de Git y GitHub **por X razón**, utilizamos dos comandos. Primero `git tag -d <nombre del tag>`, elimina el tag de respositorio local. Y segundo `git push origin :refs/tags/<nombre del tag>`, elimina el tag de GitHub. **Enter** y listo.
