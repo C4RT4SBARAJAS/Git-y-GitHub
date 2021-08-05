@@ -257,7 +257,7 @@ En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos c
 | `git <nombre del alias>` | Ejectua un alias guardado en Git. |
 | `alias` | Te permite ver todos los alias creados. |
 | `unalias <nombre del alias>` | Elimina un alias. |
-| `git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all` | Super comando en Git |
+| `alias parpadeante="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white) - %an%C(reset)%C(blink yellow)%d%C(reset)' --all"` | Alias parpadeante |
 
 # Flujo de trabajo básico con un repositorio remoto
 
