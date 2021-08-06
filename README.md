@@ -257,7 +257,11 @@ En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos c
 | `git <nombre del alias>` | Ejectua un alias guardado en Git. |
 | `alias` | Te permite ver todos los alias creados. |
 | `unalias <nombre del alias>` | Elimina un alias. |
-| `alias parpadeante="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white) - %an%C(reset)%C(blink yellow)%d%C(reset)' --all"` | Alias parpadeante |
+| `alias parpadeante="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white) - %an%C(reset)%C(blink yellow)%d%C(reset)' --all"` | Alias parpadeante. |
+| `git checkout <nombre de la rama>` | Te permite cambiar de ramas. |
+| `Git branch` | Te permite ver todas las ramas creadas. |
+| `git show-branch` | Nos muestra las ramas que existen y cual ha sido su historia. |
+| `git show-branch` | Muy similar al comando `git show-branch` pero con mas datos. |
 
 # Flujo de trabajo básico con un repositorio remoto
 
@@ -454,3 +458,11 @@ Los tags nos permiten crear versiones para nuestro proyecto o categorizar que es
 6. Para visualizar estos cambios nos rigimos en GitHub a **Branches** y después a **Tags**. Y veremos el `<nombre de la versiión>`.
 
 Si queremos **elimar un tag** de Git y GitHub **por X razón**, utilizamos dos comandos. Primero `git tag -d <nombre del tag>`, elimina el tag de respositorio local. Y segundo `git push origin :refs/tags/<nombre del tag>`, elimina el tag de GitHub. **Enter** y listo.
+
+# Manejo de ramas en GitHub
+
+En GitHub siempre vas a ver la rama **main**, anteriormente ***master***, la rama principal donde está la última versión, pero ¿qué pasa con las ramas de desarrollo? Normalmente hay una versión estable de tu software y luego empiezas a generar cambios que no estas seguro si agregar a la rama principal, o también puede que haya múltiples programadores trabajando en ramas distintas. Por ejemplo, para la creación de una página web, vamos a dividir el desarrollo de la cabecera o **header** en una rama y el desarrollo del pie de página o **footer** en otra rama.
+
+Tu puedes tener ramas que nunca envies a tu respositorio en internet o a GitHub. Tu puedes tener ramas que siempre estes enviando. 
+
+Para crear nuestras ramas de trabajo header y footer tenemos que movernos a nuestra rama principal **master**, porque es importante hacerlo desde la versión mas reciente. Estando aquí utilizamos el comando `git branch <nombre de la rama>`, es decir, **git branch header** y **git branch footer**. Con eso ya tengo los branches creados. Comprobamos con `git branch`, para ver las ramas creadas. Para enviar a nuestro respositorio remoto utilizamos el comando `git push origin <nombre de la rama>`, es decir, **git push origin header** y **git push origin footer**.
