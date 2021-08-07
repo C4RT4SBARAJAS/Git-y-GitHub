@@ -465,4 +465,30 @@ En GitHub siempre vas a ver la rama **main**, anteriormente ***master***, la ram
 
 Tu puedes tener ramas que nunca envies a tu respositorio en internet o a GitHub. Tu puedes tener ramas que siempre estes enviando. 
 
-Para crear nuestras ramas de trabajo header y footer tenemos que movernos a nuestra rama principal **master**, porque es importante hacerlo desde la versión mas reciente. Estando aquí utilizamos el comando `git branch <nombre de la rama>`, es decir, **git branch header** y **git branch footer**. Con eso ya tengo los branches creados. Comprobamos con `git branch`, para ver las ramas creadas. Para enviar a nuestro respositorio remoto utilizamos el comando `git push origin <nombre de la rama>`, es decir, **git push origin header** y **git push origin footer**.
+Para crear nuestras ramas de trabajo header y footer tenemos que movernos a nuestra rama principal **master**, porque es importante hacerlo desde la versión mas reciente. Estando aquí utilizamos el comando `git branch <nombre de la rama>`, es decir, **git branch header** y **git branch footer**. Con eso ya tengo los branches creados. Para comprobar que las ramas están creadas utilizamos el comando `git branch`. Para enviar las ramas a nuestro respositorio remoto utilizamos el comando `git push origin <nombre de la rama>`, es decir, **git push origin header** y **git push origin footer**.
+
+# Configurar múltiples colaboradores en un repositorio de GitHub
+
+Imagina que acabas de ser contratado para trabajar en un proyecto remoto. Así que estas muy emocionado por tu primer día de trabajo y empiezas a crear una **Nueva carpeta** en tu **HOME** llamada **collaborativeProjects** y dentro de este **Directorio** creas una **Nueva carpeta** llamada **Proyecto-Company-Name**. Entras a **Company-Name** y aquí vas a arrancar tu repositorio.
+
+Pero hay una diferencia entre el resto y tú. Porque tú **NO** vas a hacer **git init**. Porque tu te quieres traer el repotorio. Entonces lo que deberás hacer es visitar el respotirio en GitHub. Estando en GitHub nos dirigimos a la pestaña  ***clone*** donde nos da la opción de ***Clone*** por **HTTPS** O **SSH**. Y copiamos la URL elegida.
+
+Rcuerda una cosas es que tú puedas **clonar** y otra cosa es que tú puedas **enviar**.
+
+¿Qué pasa cuándo queremos traernos un proyecto de otro lado? ¿Qué pasa cuándo no estamos arrancando desde cero, sino que alguien más ya creo el proyecto y tu te estas uniendo como un nuevo miembro de ese equipo?
+
+Lo que pasa es que vas a tu directorio en local donde arrancarás o **clonarás** tu respositorio. Estando aquí utilizamos el comando `git clone <dirección del respositorio remoto en GitHub>`. Lo que pasa es que empezará a clonarlo. Y listo. Notaras que no te pide usuario ni contraseña, es porque el repositorio es un repositorio público. Al ser público simplemente lo puedo descargar como personas que navegan por el rspotorio.
+
+Para comprobar que el repositorio remoto fue clonado en mi entorno local damos `ls -al`. Y visualizamos el repositorio creado en su propio directorio. Con el mismo nombre que el del repositorio remoto. El es el nombre por defecto. Pero sin problemas también le puedo cambiar el nombre.
+
+Ahora imaginemos que modificamos el proyecto. Y para guardar esos cambios hacemos un commit `git commit -am "<mensaje>"`. Porque el archivo ya fue creado y enviado anteriormente. Ahora para enviar esos cambios al respositorio remoto hacemos `git pull origin master`. De esta manera siempre nos traemos cambios si los hubo. Por buenas prácticas. Cabe mencionar que en nuestro repositorio local nos tragimos toda la **historia** del proyecto de solo la rama **master**. Y podemos visualizar todas las ramas que faltan agreagar con el comando `git log`, ya que ahora mi commit es el mas reciente. Por último hacemos `git push origin master`, porque es lo que hay que hacer.
+
+Pero algo paso. **Unable to access**, **Permission denied**.
+
+¿Y por qué paso ésto? porque en el proceso el el jefe no te dió acceso.
+
+Para que tu jefe que es el dueño del respositorio te agregué. Debe ir a los **Settings** del respositorio. Después a **Manage access**. Hacer clic en **Invite a collaborator** y escribir tu username, full name, or email. Y por último clic en **Select a collaborator above**.
+
+Lo que pasará es que te llegará un email de la empresa el cual te informará que te estan invitando a colaborar. Así que solo deberas **aceptar la invitación** si estas de acuerdo.
+
+Ahora ya tienes permiso de hacer un `git push origin master`. Y listo tus cambios se han enviado exitosamente el respositorio remoto.
