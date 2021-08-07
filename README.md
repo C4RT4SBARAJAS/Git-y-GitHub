@@ -492,3 +492,7 @@ Para que tu jefe que es el dueño del respositorio te agregué. Debe ir a los **
 Lo que pasará es que te llegará un email de la empresa el cual te informará que te estan invitando a colaborar. Así que solo deberas **aceptar la invitación** si estas de acuerdo.
 
 Ahora ya tienes permiso de hacer un `git push origin master`. Y listo tus cambios se han enviado exitosamente el respositorio remoto.
+
+Tu jefe notará tus cambios en el repositorio remoto. Para qué el pueda tener esos cambios en su repositorio remoto tiene que hacer `git pull origin master`. Y listo.
+
+Sin embargo, tu jefe tiene una charla contigo y te hace saber que los **cambios** se hacen en ramas. Así que te asigna una **rama de trabajo**. Y cuando todos los cambios esten listos tu jefe se encargará de hacer el **merge** para fusionar todos los cambios.
