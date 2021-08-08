@@ -477,7 +477,7 @@ Rcuerda una cosas es que tú puedas **clonar** y otra cosa es que tú puedas **e
 
 ¿Qué pasa cuándo queremos traernos un proyecto de otro lado? ¿Qué pasa cuándo no estamos arrancando desde cero, sino que alguien más ya creo el proyecto y tu te estas uniendo como un nuevo miembro de ese equipo?
 
-Lo que pasa es que vas a tu directorio en local donde arrancarás o **clonarás** tu respositorio. Estando aquí utilizamos el comando `git clone <dirección del respositorio remoto en GitHub>`. Lo que pasa es que empezará a clonarlo. Y listo. Notaras que no te pide usuario ni contraseña, es porque el repositorio es un repositorio público. Al ser público simplemente lo puedo descargar como personas que navegan por el rspotorio.
+Lo que pasa es que vas a tu directorio en local donde arrancarás o **clonarás** tu respositorio. Estando aquí utilizamos el comando `git clone <dirección del respositorio remoto en GitHub>`. Lo que pasa es que empezará a clonarlo. Y listo. Notaras que no te pide usuario ni contraseña, es porque el repositorio es un repositorio público. Al ser público simplemente lo puedo descargar como personas que navegan por el repositorio.
 
 Para comprobar que el repositorio remoto fue clonado en mi entorno local damos `ls -al`. Y visualizamos el repositorio creado en su propio directorio. Con el mismo nombre que el del repositorio remoto. El es el nombre por defecto. Pero sin problemas también le puedo cambiar el nombre.
 
@@ -496,3 +496,38 @@ Ahora ya tienes permiso de hacer un `git push origin master`. Y listo tus cambio
 Tu jefe notará tus cambios en el repositorio remoto. Para qué el pueda tener esos cambios en su repositorio remoto tiene que hacer `git pull origin master`. Y listo.
 
 Sin embargo, tu jefe tiene una charla contigo y te hace saber que los **cambios** se hacen en ramas. Así que te asigna una **rama de trabajo**. Y cuando todos los cambios esten listos tu jefe se encargará de hacer el **merge** para fusionar todos los cambios.
+
+# Flujo de trabajo profesional
+
+## Traerme una rama del repositorio remoto a mi repositorio local
+
+Siguiendo con el ejemplo de que acabas de ser contratado para trabajar en un proyecto remoto
+
+Recordemos que en nuestro repositorio local nos tragimos toda la **historia** del proyecto de solo la rama **master**. Para traernos la historia de otra rama así como posibles nuevos cambios o actualizaciones utilizamos el comando `git pull origin <nombre de la rama>`. Debiendo ejecutarse desde la rama **master** en nuestro **repositiro local**. Para comprobar que nos tragimos la rama utilizamos el comando `git branch`. Y listo.
+
+Si agregamos cambios y queremos enviarlos de vuelta al respositorio remoto utilizamos el comando `git push origin <nombre de la rama>`. Recuerda que por buenas practicas siempre antes de hacer un **push** hay que hacer un **pull**.
+
+## Hacer un merge en las ramas del proyecto
+
+Tú jefe tiene el trabajo de fusionar las ramas. ¿Por qué? Porque es el jefe. Ya que verificó que los cambios están bien puede ir a continuación a la rama principal desde donde quiere hacer el merge. Es decir a la rama *master*. Desde la rama master tu jefe utiliza el comando `git merge <nombre de la rama que quiere fusionar>`. Y si todo salio bien, tu jefe agregará un mensaje para el merge. Y listo. 
+
+## Pull requests
+
+¿Qué pasa cuando no eres parte del proyecto, cuando eres un extraño que envia sus cambios al proyecto? Eso normalmente se llaman Pull requests.
+
+## Subir una imágen o archivo binario a GitHub
+
+Una imágene es un archivo binario. No es un archivo de texto plano. Así que tengo que pensar muy bien si lo quiero agregar al repositorio. ***Las buenas prácticas dicen que los archivos binarios no se deberían agregar a repositorios***. ***Deberían ser ignorados***.
+
+¿Cuál es el problema? El problema es que las imagenes son pesadas. Eso significa que siempre que haga cambios voy a traerme este cambio también. Y entre yo más binarios le agregué al archivo más pesado va a ser mi repositorio.
+
+Si queremos subir una **imágen** a GitHub, se recomienda subirla dentro de un directorio o carpeta, para cuestión de organización. Para subir el directorio con imágenes:
+
+1. Primero creamos un directorio ***Imagenes*** en mi entorno Windows, donde guardaremos todas nuestras imágenes para el proyecto.
+2. Nos dirigimos a nuestro repositorio en GitHub. Damos clic a la pestaña **Add file** y elegimos la opción **Upload files**.
+3. Se nos abrirá una ventana donde podremos **arrastrar nuestro directorio** con las imágenes o **escoger el directorio desde nuestros archivos** abriendonos una ventana de navegación de toda la vida.
+4. Una vez cargado nuestro directorio ***Imagenes***. Para guardarlo en nuestro repositorio y añadirlo a la historia hacemos un commit con la interfaz de GitHub. Ya sea que agreguemos nuestro propio mensaje o dejemos el que nos proporciona GitHub por defecto. Elegimos la opción **Commit directly to the master branch** y por último **Commit changes**. Y listo la imagen fue añadida a la historia y al repositorio.
+
+Normalmente sitios como GitHub u otros agregan un chache intermedio que en ocasiones puede tardar en actualizarse, y ese tardio es lo que hace que en ocasiones tarde en visualizase nuestra imágen o los cambios a nuestra imágen.
+
+Para forzar la actualización en Windows usamos la combinación de teclas `Ctrl + F5 o Ctrl + Shif + R`.
