@@ -513,21 +513,27 @@ Tú jefe tiene el trabajo de fusionar las ramas. ¿Por qué? Porque es el jefe. 
 
 ## Pull requests
 
+Es una funcionalidad de **github** (en **gitlab** llamada merge request y en **bitbucket** push request), en la que el dueño del respositorio o un colaborador te pide que revises sus cambios antes de hacer **merge** a la rama principal, normalmente **master**. Siguiendo con el ejemplo de que acabas de ser contratado para trabajar en un proyecto remoto.
+
+En caso de que no trabajes para un proyecto remoto. Y solo seas un extraño que envia sus cambios al proyecto también se le conoce como Pull request.
+
+Un Pull request también puedes crearlo tú mismo, siempre que seas **el dueño del repositorio**, una **rama experimental** aparte de la rama máster y tengas **colaboradores** en tu proyecto. Para ello de igual manera puedes pedirle a alguien que revise tus cambios y los apruebe, para que tú puedas hacer el merge. Y también puedes aceptar o rechazar Pull request personas extrañas al proyecto.
+
+**En terminos simples** crear **un Pull request** es asignarle a alguien el trabajo de revisar los cambios y los apruebe. Y una vez revisados, **el owner** puede fusiona los cambios al **master**.
+
+Flujo de trabajo de un Pull request:
+
+1. Modificas la rama development o experimental, comiteas esos cambios y los envias al respositorio remoto.
+2. Te diriges a GitHub. **GitHub** te crea **automaticamente** un Pull request entre la **rama development** y la **rama master**. Visualizandose en la **pestaña Pull requests**. Lo que hace GitHub es compara esos cambios y te dice que es posible fusionar esas ramas.
+3. Sino queremos el Pull request automático podemos crearlo nosotros mismos. Para hacerlo nos dirigimos a nuestro repositorio y damos clic a **New pull resquest**. En este lugar elegimos para la rama ***base*** **master** y para la rama ***compare*** **development**. Es decir, tenemos una **rama principal** llamada master y una rama que queremos comparar, la **rama development**. GitHub te hará saber si las ramas se pueden fusionar automáticamente. Y damos clic a **Create pull request**.
+4. Una vez creado me permite agregarle detalles, tales como el **nombre** del pull request el cual por defecto es el mensaje del commit, **Leave a coment** y **Reviewers** o personas que revisen los cambios entre estas ramas. Siendo estas tres las principales para GitHub como herramienta. También tenemos **Assigness**, para asignarle el Pull requets a alguien, **Labels** o etiquetas, **Projects** o agrupación de repositorios en GitHub y **Milestone** o un objetivo logrado y representado con este pull request. Estas otras opciones se vuelven útiles en el proceso de **DevOps** o **Developer Operations**. Es decir, una conexión eficiente entre los operadores con developers, de esta manera los equipos de trabajo alinean sus metas, mejoran su comunicación y aumentan la velocidad y los resultados. DevOps es una cambio en la cultura de la empresa que te permite automatizar y medir procesos. Damos clic nuevamente a **Create pull request**. Y listo.
+
+Si es nuestro trabajo revisar los cambios para este pull request, entonces:
+
+1. Nos dirigimos a al **pestaña Pull requests**. y elegimos el pull request que queremos revisar.
+2. GitHub automáticamente te dice **quien** requiere tú revisión para este pull request. Te dice que **el dueño del respositorio quiere fusionar** 1 commit hacia el master de su rama development. Te permite ver su mensaje para tí. Te avisa si la development tiene o no conflictos con la rama master. Te da la opción de hacer un **Merge pull request**.
+
+## Pull requests cuándo no eres parte del proyecto
+
 ¿Qué pasa cuando no eres parte del proyecto, cuando eres un extraño que envia sus cambios al proyecto? Eso normalmente se llaman Pull requests.
 
-## Subir una imágen o archivo binario a GitHub
-
-Una imágene es un archivo binario. No es un archivo de texto plano. Así que tengo que pensar muy bien si lo quiero agregar al repositorio. ***Las buenas prácticas dicen que los archivos binarios no se deberían agregar a repositorios***. ***Deberían ser ignorados***.
-
-¿Cuál es el problema? El problema es que las imagenes son pesadas. Eso significa que siempre que haga cambios voy a traerme este cambio también. Y entre yo más binarios le agregué al archivo más pesado va a ser mi repositorio.
-
-Si queremos subir una **imágen** a GitHub, se recomienda subirla dentro de un directorio o carpeta, para cuestión de organización. Para subir el directorio con imágenes:
-
-1. Primero creamos un directorio ***Imagenes*** en mi entorno Windows, donde guardaremos todas nuestras imágenes para el proyecto.
-2. Nos dirigimos a nuestro repositorio en GitHub. Damos clic a la pestaña **Add file** y elegimos la opción **Upload files**.
-3. Se nos abrirá una ventana donde podremos **arrastrar nuestro directorio** con las imágenes o **escoger el directorio desde nuestros archivos** abriendonos una ventana de navegación de toda la vida.
-4. Una vez cargado nuestro directorio ***Imagenes***. Para guardarlo en nuestro repositorio y añadirlo a la historia hacemos un commit con la interfaz de GitHub. Ya sea que agreguemos nuestro propio mensaje o dejemos el que nos proporciona GitHub por defecto. Elegimos la opción **Commit directly to the master branch** y por último **Commit changes**. Y listo la imagen fue añadida a la historia y al repositorio.
-
-Normalmente sitios como GitHub u otros agregan un chache intermedio que en ocasiones puede tardar en actualizarse, y ese tardio es lo que hace que en ocasiones tarde en visualizase nuestra imágen o los cambios a nuestra imágen.
-
-Para forzar la actualización en Windows usamos la combinación de teclas `Ctrl + F5 o Ctrl + Shif + R`.
