@@ -530,10 +530,19 @@ Flujo de trabajo de un Pull request:
 
 Si es nuestro trabajo revisar los cambios para este pull request, entonces:
 
-1. Nos dirigimos a al **pestaña Pull requests**. y elegimos el pull request que queremos revisar.
-2. GitHub automáticamente te dice **quien** requiere tú revisión para este pull request. Te dice que **el dueño del respositorio quiere fusionar** 1 commit hacia el master de su rama development. Te permite ver su mensaje para tí. Te avisa si la development tiene o no conflictos con la rama master. Te da la opción de hacer un **Merge pull request**.
+1. Nos dirigimos a la **pestaña Pull requests**. y elegimos el pull request que queremos revisar.
+2. **Para la pestaña Conversation**. GitHub automáticamente te dice **quien** requiere tú revisión para este pull request. Te dice que **el dueño del respositorio quiere fusionar** 1 commit hacia el master de su rama development. Te permite ver su comentario para tí. Te avisa si la rama development tiene o no conflictos con la rama master. Podemos realizar una fusión creando un **Merge pull request** (Existiendo también, las opciones ***Squash and merge*** y ***Rebase and merge***, pero son malas practicas).
+3. **Para la pestaña Commits**. Visualizamos todos los commits que pertenecen a los cambios. Pudiendo ser uno o una rama entera.
+4. **Para la pestaña Files changed**. Visualizamos que archivos fueron cambiados o modificados.
+5. **Para** decirle a la persona que no aceptas sus cabios nos dirigimos a **la pestaña Checks**. Damos clic en **Review changes**. Aquí puedo puedo agregar un comentario hacerca de por qué no acepto sus cambios y lo que debería de arreglar. Después, doy clic en **Request changes** para pedirle los cambios. Pero también lo puedo **Comment** o **Approve**. Si apruebo los cambios, como Reviewer que soy tendre una palomita de que he aprovado los cambios.
+6. El merge o la fusión a master lo puede hacer culaquier colaborador del equipo. Sin embargo, siempre debe haber alguien que haga los merges y que se respete quíen los hace. Porque de lo contrario no existe este proceso de **Code Review**. Los cuales son una excelente práctica. Hacemos clic en **Mege pull request**, agregamos el mensaje y por último damos clic en **Confirm merge**. Se nos mostrará el mensaje **Pull request successfully merged and closed**. De manera opcional puedo borrar la rama haciendo clic en **Delete branch**. Esto es útil cuando no quiero llenarme de branches y cuando son ramas que no necesito porque son arreglos que tocaba hacer de última hora.
+
+
+Los Pull request del lado de Git no existen, solamente existen los merges. Un Pull request es como una pausa justo antes de poder fusionarlo que te permite agregar cambios. Y ese Code Review siempre es la mejor de las ideas para hacer un trabajo completo.
 
 ## Pull requests cuándo no eres parte del proyecto
 
-¿Qué pasa cuando no eres parte del proyecto, cuando eres un extraño que envia sus cambios al proyecto? Eso normalmente se llaman Pull requests.
+¿Qué pasa cuando no eres un colaborador del proyecto, cuando quieres aportar a Opensure, cuando eres un extraño que envia sus cambios al proyecto? Ahí es cuando los pull requests son aún mas importantes, porque tu no tienes poder de merge.
+
+Aquí **lo que se hace es** clonar con algo llamado un **Fork** y luego hacer **Pull request** de una manera ligeramente distinta.
 
