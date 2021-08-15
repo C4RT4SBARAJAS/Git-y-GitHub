@@ -572,3 +572,35 @@ Para mantener actualizado mi fork del proyecto, tengo que:
 5. La otra forma es al reves, es hacerlo directamente desde GitHub.
 
 Ambas opciones son 100% validas, ambas opciones se pueden hacer depende de ti.
+
+# Ignorar archivos en el repositorio con .gitignore
+
+No todos los archivos que tu agregas a un proyecto deberían ir en un repositorio. Por ejemplo, cuando tienes un archivo donde están tus contraseñas, cuando te conectas a una base de datos, eso tiene que ir en un archivo aparte que no puede ser parte de ti repositorio. ¿Por qué? Porque alguíen más lo puede ver. Sobre todos en proyectos OpenSources. Teniendo en mente eso, Git tiene algo que se llama **Gitignore**.
+
+Una buena práctica es evitar que los archivos binarios o imágenes sean parte del repostirio. Entonces hay que ignorarlos.
+
+Para ignorar archivos creamos un archivo en el diretorio de nuestro proyecto, junto con los archivos del respositorio y el repositorio. Debiendo llamarse **.gitignore**. Lo creamos con el siguiente comando `touch .gitignore` o creandolo desde algún editor de código y guardando como ***.gitignore***. Gitignore es una lista de los archivos que vamos a ignorar. La sintaxis para **ignorar el 100% de archivos .jpg** es la siguiente:
+
+```
+*.jpg
+```
+
+**Guardamos** estos cambios, **hacemos** `git add`, `git commit -m "<mensaje>"`, `git pull origin master` y `git push origin master`. Y listo, tenemos **.gitignore** en nuestro **respositorio remoto**. Lo que pasa es que en nuestro respositorio remoto la imágen .jpg no está, no se subio porque fue ignorada, a pesar de que si está en mi entorno local. Para subirla lo podemos hacer por ftp, por un content delivered network, rzinc, hay miles de técnicas, porque los binarios no deberían ir en los repositorios remotos.
+
+```
+# Ignorar directorios, archivos y anidados
+
+directorio
+archivo.extesión
+directorio/archivo.extensión
+directorio1/directorio2
+directorio1/directorio2/*.extensión
+
+
+# No ignorar o aplicar excepciones
+
+!/archivo.extensión
+!/directorio1/directorio2/archivo.extensión
+```
+
+Impirarte en proyecto OpenSources no es solo lo correcto, es la forma en la que todo el mundo aprende en la industria del Software.
