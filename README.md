@@ -585,7 +585,7 @@ Para ignorar archivos creamos un archivo en el diretorio de nuestro proyecto, ju
 *.jpg
 ```
 
-**Guardamos** estos cambios, **hacemos** `git add`, `git commit -m "<mensaje>"`, `git pull origin master` y `git push origin master`. Y listo, tenemos **.gitignore** en nuestro **respositorio remoto**. Lo que pasa es que en nuestro respositorio remoto la imágen .jpg no está, no se subio porque fue ignorada, a pesar de que si está en mi entorno local. Para subirla lo podemos hacer por ftp, por un content delivered network, rzinc, hay miles de técnicas, porque los binarios no deberían ir en los repositorios remotos.
+**Guardamos** estos cambios, **hacemos** `git add`, `git commit -m "<mensaje>"`, `git pull origin master` y `git push origin master`. Y listo, tenemos **.gitignore** en nuestro **respositorio remoto**. Lo que pasa es que en nuestro respositorio remoto la imágen .jpg no está, no se subio porque fue ignorada, a pesar de que si está en mi entorno local. Para subir la imágen debemos hacer uso de algún lugar externo, por ejemplo, en: [https://imgur.com/](https://imgur.com/), puedes subir gratis imágenes y georrefernciarlas desde ahí. porque los binarios no deberían ir en los repositorios remotos.
 
 ```
 # Ignorar directorios, archivos y anidados
@@ -604,3 +604,11 @@ directorio1/directorio2/*.extensión
 ```
 
 Impirarte en proyecto OpenSources no es solo lo correcto, es la forma en la que todo el mundo aprende en la industria del Software.
+
+# README.md es una excelente práctica
+
+README.md es una excelente práctica en tus proyectos. ***md*** significa Markdown. Es una espeice de código que te permite cambiar ligeramente la forma en la que se ve un archivo de texto.
+
+La forma de aprende README.md es inspirarnos de proyectos OpenSources. README.md existe porque nosotros queremos contarle al mundo de qué es un repositorio.
+
+Para editar nuestro README.md podemos abrir el archivo en algún editor de código o podemos usar algún editor online como: [https://pandao.github.io/editor.md/en.html](https://pandao.github.io/editor.md/en.html).
