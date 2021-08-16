@@ -644,3 +644,31 @@ NOTA: Obtienes un sitio por cada cuenta y organización de GitHub, y sitios de p
 y después al opción **GitHub Pages**, donde en **Source** seleccionaremos la rama **master** para GitHub Pages. Y listo: ![](https://pages.github.com/images/source-setting@2x.png)
 
 Para crear **sitios web para tus proyectos** solo deberas **repetir los pasos 4** al **7**. Debiendo tener un **index.html** como tu archivo principal.
+
+# Git Rebase: reorganizando el trabajo realizado
+
+En un flujo normal de trabajo, tenemos nuestro master de toda la vida, y supongamos que en un punto, me di cuenta que cometí un error. Entonces hago una neuva rama que se llama **bugfix** y en esa nueva rama empiezo a arreglar el bug. Y eventualmente caundo ya estoy listo realizo un merge. Ese merge fusiono lo que había he bugfinx lo que había en master, continuo con mi vida y esa rama sigue existiendo. ¿Pero que pasa cuando quiero que la rama se agregué a la historia del master?¿Qué pasa si lo que yo quiero no es hacer un merge, sino hacer como si no paso nada? Lo que quiero es borrar la rama bugfix y pegar todos los cambios que hice a la historia del master. Y una vez pegados esos cambios no le digo a nadie y es como si no hubiera pasado nada. Para poder hacer eso necesito hacer un **rebase**.
+
+***Rebase es solo para respositorios locales***, porque rebase reescribe la historia del repositorio.
+
+***Rebase es una muy mala práctica enviandola a repositorios remotos***, porque en general la historia en los repositorios remotos debería mantenrse intacta.
+
+Funciona en ciertos casos, usa tu criterio, pregunta a tus compañeros de trabajo, pero ***ten mucho cuidado la hacer resbase***. Pero los errores pasan y hay que aprende a solucionarlos.
+
+Para hacer un rebase:
+
+1. Creamos una rama experimental, por ejemplo, la rama bugfix. Arreglamos y  agregando los cambios necesarios a esta rama. Y la rama master puede cambiar o manterse sin cambios. 
+2. Una vez que estamos listos. Nos aseguramos de estar en la rama experimental y desde aquí utilizamos el comando `git rebase master`. De esta manera pegamos la historia de la rama experimental a la historia del master. Si la rama master no fue modificada se nos mostrará el siguiente mensaje: `current branch <rama experimantal> is up to date`. Si la rama master fue modificada y hacemos un `git rebase master`se nos mostrarán los siguientes mensajes: 
+`First, rewinding head to replay your work on top of it...`
+`Applyin: <mensaje>`
+`Using index info to reconstruct a base tree...`
+`M  archivo.extensión`
+`Falling back to patching base and <número>-way merge`
+`Auto-merging archivo.extensión`. De esta manera me pega y autofusiona todos los cambios de master con la rama experimental. Cual se el caso, lo que pasa es que la historia ya no es que la rama experimental arranco un commit atras, sino que la rama experimantel arranco un commit adealnte. Cambia la historia de donde arranco el branch.
+3. Ahora para traerme la historia al master, desde la rama master utilizo el comando `git rebase <rama experimental>`. Este siempre es el orden, primero se la hace el rebase a la rama voy a desaparecer de la historia y después se la hace rebase a la rama principal. De lo contrario podríamos entrar un un conflicto que solo podría arreglarse con `git reset`. Al ejecutarlo nos muestra lo siguiente: 
+`First, rewinding head to replay your work on top of it...`
+`Fast-forwarded master to <rama experiental>`.
+Ahora ya tengo todo en la rama master. Y el HEAD le apunta a la rama master y experimental.
+4. Ahora podemos enviar estos cambios al repositorio remoto, haciendo pull y push. Y cuando visualizamos la historia, podemos observar que todo paso en master, la rama experimental no existe.
+5. Por último puedo eliminar la rama experimental utilizando el comando `git branch -D <rama experimantal>`. Y listo. Si visualizamos con git log, la rama desaparecio de la historia en local.
+
