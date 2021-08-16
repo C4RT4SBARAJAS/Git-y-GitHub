@@ -612,3 +612,35 @@ README.md es una excelente práctica en tus proyectos. ***md*** significa Markdo
 La forma de aprende README.md es inspirarnos de proyectos OpenSources. README.md existe porque nosotros queremos contarle al mundo de qué es un repositorio.
 
 Para editar nuestro README.md podemos abrir el archivo en algún editor de código o podemos usar algún editor online como: [https://pandao.github.io/editor.md/en.html](https://pandao.github.io/editor.md/en.html).
+
+# Tu sitio web público con GitHub Pages
+
+GitHub tiene un servicio de hosting gratis llamado GitHub Pages, tu puedes tener un repositorio donde el contenido del repositorio se vaya a GitHub y se vea online.
+
+Para crear sitios web para ti y tus proyectos, alojado directamente desde su repositorio de GitHub, puede visitar la página oficial: [https://pages.github.com/](https://pages.github.com/) o seguir los pasos a continuación.
+
+NOTA: Obtienes un sitio por cada cuenta y organización de GitHub, y sitios de proyectos ilimitados. Empecemos.
+
+1. Si ya estas listo para empezar, dirígete a **GitHub** y crea un **nuevo repositorio público llamado username.github.io**, donde username es tu nombre de usuario (o el nombre de la organización) en GitHub. ***Si la primera parte del repositorio no coincide exactamente con su nombre de usuario, no funcionará, así que asegúrese de hacerlo bien.***
+![](https://pages.github.com/images/user-repo@2x.png)
+
+2. ¿Qué cliente de git estás usando? Una terminal.
+
+3. Clonar el repositorio. Vaya a la carpeta donde desea almacenar su proyecto y clone el nuevo repositorio por HTTPS:
+`git clone https://github.com/username/username.github.io` o por SSH: `git@github.com:username/username.github.io`
+![](https://pages.github.com/images/setup-in-desktop@2x.png)
+
+4. Hello World. Ingrese a la carpeta del proyecto y agregue un archivo index.html:
+`cd username.github.io`
+`echo "Hello World" > index.html`
+5. Push it. Agregue, comitea, traiga y envíe sus cambios:
+`git add --all`
+`git commit -m "Initial commit"`
+`git pull -u origin master`
+`git push -u origin master`
+6. …¡y tu estas listo!. Inicie un navegador y vaya a https://username.github.io.
+7. Si la url no funciona deberas ir primero a los Setting del repositorio: 
+![](https://pages.github.com/images/repo-settings@2x.png) 
+y después al opción **GitHub Pages**, donde en **Source** seleccionaremos la rama **master** para GitHub Pages. Y listo: ![](https://pages.github.com/images/source-setting@2x.png)
+
+Para crear **sitios web para tus proyectos** solo deberas **repetir los pasos 4** al **7**. Debiendo tener un **index.html** como tu archivo principal.
