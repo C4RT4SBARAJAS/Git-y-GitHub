@@ -1,4 +1,4 @@
-# Git y GitHub
+# Git y GitHub Avanzado
 ![](https://camo.githubusercontent.com/79d66e25901bc682cf5d00ddd89e9ee24c2a0843e37a9a532c37a607ae7a19b4/687474703a2f2f656c6672656e657469636f696e666f726d617469636f2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031372f31302f4769744875624c6f676f2e706e67)
 
 ![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
@@ -76,7 +76,7 @@ Una vez ya estas listo y has completado todos estos pasos, quizas puedes llevar 
 | `cp -r <directorio a copia/> <ruta de destino/nombre de la copia>` | Permite copiar directorios completos (archivos y subcarpetas) a una ruta especificada. |
 | `mv <old name> <new name>` | Cambia del nombre de un archivo o carpeta. Primero se coloca el archivo o carpeta que queremos renombrar, enseguida el nombre del nuevo archivo o carpeta. |
 | `mv <directorio a mover/> <ruta de destino/directorio a mover>` | Permite mover un directorio a una ruta diferente conservando el mismo nombre. Sin embargo, este nombre puede ser diferente. |
-| `mv <archivo a mover> <ruta de destino/archivo a mover>` | Permite mover un archivo a una ruta diferente convervando el mismo nombre. Sin embargo, este nombre puede ser diferente. |
+| `mv <archivo a mover> <ruta de destino/archivo a mover>` | Permite mover un archivo a una ruta diferente conservando el mismo nombre. Sin embargo, este nombre puede ser diferente. |
 | `<comando> --help` `man <comando>` | Permite acceder a la ayuda y explicación de un comando en específico |
 | `<comando> --<agumento de palabra>` | Sintaxis de un comando al utilizar palabras completas de agurmento. |
 | `<comando> -<agumento de letra>` | Sintaxis de un comando al utilizar letras de agurmento. |
@@ -226,6 +226,9 @@ En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos c
 | `git log --stat` | Explica el número de líneas que se cambiaron brevemente. |
 | `git log -p` | Explica el número de líneas que se cambiaron y te muestra que se cambió en el contenido. |
 | `git shortlog` | Indica que commits ha realizado un usuario, mostrando el usuario y el titulo de sus commits.  |
+| `git shortlog -sn` | Muestra las personas que han hecho ciertos commits.  |
+| `git shortlog -sn --all` | Muestra todos los commits incluso los borrados hechos por las personas.  |
+| `git shortlog -sn --all --no-merges` | Muestra todos los commits incluso los borrados hechos por las personas, excepto los merges.  |
 | `git log --graph --decorate --oneline ` | Muestra mensajes personalizados de los commits. |
 | `git log --pretty=format:"%cn hizo un commit %h el dia %cd"` | Muestra mensajes personalizados de los commits. |
 | `git log -<número>` | Limitamos el número de commits |
@@ -238,6 +241,8 @@ En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos c
 | `git log – README.md` | Busca los commits en un archivo en específico. |
 | `git log -S “<contenido a busca>”` | Busca los commits con el contenido dentro del archivo. |
 | `git log > log.txt` | guardar los logs en un archivo txt |
+| `git blame -c <nombre del archivo.extensión>` | Nos permite ver de manera identada quién hizo qué, línea por línea en un archivo de código. |
+| `git blame -c <nombre del archivo.extensión> -L<inicial>,<final>` | Nos permite ver de manera identada quién hizo qué, de una línea inicial a una línea final en un archivo de código. |
 
 ## Comandos de un flujo de trabajo
 
@@ -252,16 +257,18 @@ En cambio, si usamos `git reset HEAD`, lo único que haremos será mover estos c
 | `git log --all --graph --decorate --oneline` | Muestra toda la hitoria de commit desde que arranco el proyecto de manera compremida. |
 | `alias <nombre del alias>="<línea de comandos>"` | Te permite crear un alias en Linux. Se guarda de manera temporal durante tu sesión actual en la Terminal. |
 | `<nombre del alias>` | Ejecuta un alias en Linux. Debiendo crear el alias primero. |
-| `git config alias.<nombre del alias>`  | Guarda un alias en Git para un solo respositorio. |
-| `git config --global alias.<nombre del alias>` | Guarda un alias en Git de manera global para todos los repositorios. |
+| `git config alias.<nombre del alias> "<línea de comandos>"`  | Guarda un alias en Git para un solo respositorio. |
+| `git config --global alias.<nombre del alias> "<línea de comandos>"` | Guarda un alias en Git de manera global para todos los repositorios. |
 | `git <nombre del alias>` | Ejectua un alias guardado en Git. |
 | `alias` | Te permite ver todos los alias creados. |
 | `unalias <nombre del alias>` | Elimina un alias. |
 | `alias parpadeante="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white) - %an%C(reset)%C(blink yellow)%d%C(reset)' --all"` | Alias parpadeante. |
 | `git checkout <nombre de la rama>` | Te permite cambiar de ramas. |
-| `Git branch` | Te permite ver todas las ramas creadas. |
+| `git branch` | Te permite ver todas las ramas locales creadas. |
 | `git show-branch` | Nos muestra las ramas que existen y cual ha sido su historia. |
 | `git show-branch` | Muy similar al comando `git show-branch` pero con mas datos. |
+| `git branch -r` | Nos nuestra las ramas remotas, las que estan en tu servidor en GitHub. |
+| `git branch -a` | Nos nuestra todas las ramas locales (en color blanco), y todas las ramas remotas (en color rojo). De esta manera sabes cuales ramas existen y a cuales les falta hacerle ``git push``. Y cuales fueron borradas de local y aparecen en remoto. |
 
 # Flujo de trabajo básico con un repositorio remoto
 
@@ -725,3 +732,9 @@ Simulemos que por accidente en la rama master rompes o arruinas tu código porqu
 En general **es una mala practica**, porque resetea toda la historia de tus commits. No deberías usar este comando sino hasta cuando algo realmente se rompio.
 
 Puede que te este limpiando la historia, pero no la historia completa, **git reflog** tiene la verdad.
+
+# Buscar en archivos y commits de Git con Grep y log.
+
+A medida que tu proyecto se hace grande, tu vas a querer buscar ciertas cosas, por ejemplo en el código, ¿cuántes veces en nuestro proyecto usamos la palabra *color*. Esto lo hacemos con el comando ``git grep <palabra a buscar>``, mientras estes en la rama correcta Git te buscara lo que necesites. Este comando te mostrará archivos donde aparece esta palabra. Si quieres ser más específico y saber en que línea lo usaste utilizas el comando ``git grep -n <palabra a buscar>``. Lo siguiente que puedo hacer es contar la cantidad de veces que una palabra aparece, esto con el comando ``git grep -c <palabra>``. Mostrando el archivo y la linea donde aparecen. Esta es la forma en la que buscas dentro de todo tu repositorio de código.
+
+Si lo que quiero buscar está en el código es una etiqueta HTML, utilizo la siguiente estructura: ``git grep -c "<etiqueta>"``. Pero que pasa cuando lo que quiero buscar esta en un commit, entonces usamos el comando ``git log -S "<palabra a buscar>"``, mostrandome todas las veces que use usa palabra o donde tenga algo que ver. Esta es la forma en la que tu buscas y puedes hacer más facil la administración de tu proyecto a medida que se va haciendo más complejo, GREP para los archivos, LOG para los commits.
