@@ -707,3 +707,11 @@ Si después de un tiempo tengo lista la rama development y quiero unir mis cambi
 **Cherry-pick es una mala practica**. Porque significa que estas reconstruyendo la historia. Es mucho mejor que hagas el trabajo duro y lo hagas con un **merge**, hagas un checkout para tratar de ver como quedo y luego vulevas a hacer checkout al HEAD. Sin embargo, cherry-pick funciona para lo que quieras, lo puedes hacer para cambiar el HEAD del master, el HEAD de otra rama, cherry-pick funciona donde tu quieras.
 
 USA CHERRY-PICK CON SABIDURIA, SINO SABES LO QUE ESTAS HACIENDO TEN MUCHO, MUCHO, MUCHO CUIDADO. Aunque recuerda que en Git cualquier error se puede recuperar, porque nunca nada se borra en Git. Esas es la magía de Git.
+
+# Reconstruir commits en Git con amend.
+
+A veces, haces un commit y resulta que realmente no querías mandar ese commit porque te faltaba algo más.
+
+Supongamos que modificas un archivo, guardar y comiteas, pero te das cuenta de que te falto modificar otra cosa. Entonces modificas lo que te falto, agreas con ``git add .``, y ahora utilizo el comando ``git commit --amend``. AMEND en inglés significa ENMENDAR, lo que hace este comando, es que, lo cambios que hice me los va a pegar al commit anterior, al que acabo de hacer, no va a hacer un commit nuevo. Damos ENTER, y a continuación me abre VIM, donde puedo cambiar el mensaje del commit anterior. Guardo y salgo. Al hacer **git log**, podemos ver que estos cambios se pegaron al commit anterior, pudiendo haber modificado el mensaje de ese commit.
+
+Como si nada paso, nadie sabe nada, así se enmendan los commits.
