@@ -715,3 +715,13 @@ A veces, haces un commit y resulta que realmente no querías mandar ese commit p
 Supongamos que modificas un archivo, guardar y comiteas, pero te das cuenta de que te falto modificar otra cosa. Entonces modificas lo que te falto, agreas con ``git add .``, y ahora utilizo el comando ``git commit --amend``. AMEND en inglés significa ENMENDAR, lo que hace este comando, es que, lo cambios que hice me los va a pegar al commit anterior, al que acabo de hacer, no va a hacer un commit nuevo. Damos ENTER, y a continuación me abre VIM, donde puedo cambiar el mensaje del commit anterior. Guardo y salgo. Al hacer **git log**, podemos ver que estos cambios se pegaron al commit anterior, pudiendo haber modificado el mensaje de ese commit.
 
 Como si nada paso, nadie sabe nada, así se enmendan los commits.
+
+# Git Reset y Reflog: úsese en caso de emergencia.
+
+Qué pasa cuando todo, todo se va al carajo, que pasa cuando todo se rompe y uno no sabe lo que esta pasando y quiere llorar.
+
+Simulemos que por accidente en la rama master rompes o arruinas tu código porque estabas muy cansado y no sabías lo que hacías, y te das cuenta de todo al día siguiente. Entonces si yo voy en estos momentos a **git log** puedo ver todos mis errores y todas las cosas locas que hice. Así que yo quiero volver al lugar correcto, donde todo estaba bien, entonces ejecutamos el comando ``git reflog``. En **git reflog** se ve todo, aquí encontraremos tando el *commit acortado o hash*, como algo que se llama ``HEAD@{0}``. Estos son los HEADS que se han ido muriendo a traves del tiempo. Entonces lo que tu haces es buscar el último commit donde todo era correcto y **COPY**. Te relajas, compruebas que estas en la rama master, y utilizamos ya sea el comando ``git reset --SOFT`` o ``git reset --HARD``. La diferencia es que, SOFT te mantiene lo que sea que tengas en STAGING en STAGING, lo que le hayas dado **git add**, y HARD te resetea todo, en un entorno de programación profesional cuando llegan opción en general se utiliza HARD. Una vez que encontramos el commit o hash al que queremos volver utilizamos el comando HARD de la siguiente manera: ``git reset ---HARD <commit o hash>``. Al ejecutarlo todo volvio a la normalidad. Los commits indeseados desaparecieron, al igual que los errores en mi código, todo esta perfecto, como si no hubiera pasado nada.
+
+En general **es una mala practica**, porque resetea toda la historia de tus commits. No deberías usar este comando sino hasta cuando algo realmente se rompio.
+
+Puede que te este limpiando la historia, pero no la historia completa, **git reflog** tiene la verdad.
