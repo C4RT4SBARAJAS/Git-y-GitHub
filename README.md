@@ -422,16 +422,16 @@ Antes de hacer esto asegurate de tener el mismo correo electrónico de GitHub en
 Vamos a crear una serie de llaves exclusivamente para ti. Para ello:
 
 1. Nos dirigimos al HOME usando el comando `cd`.
-2. Para crear la llave SSH utilizamos el comando `ssh-keyen -t rsa- -b 4096 -C "<tu email en GitHub>"`. El número **4096** indica la complejidad del algoritmo. Y damos Enter.
+2. Para crear la llave SSH utilizamos el comando `ssh-keygen -t rsa -b 4096 -C "<tu email en GitHub>"`. El número **4096** indica la complejidad del algoritmo. Y damos Enter.
 3. Ésto nos dira **generando llave publica y privada**. Y también **nos dira dónde debemos guardar la llave**. Aquí puedes colocar otra carpeta. Pero honestamente no se los recomiendo porque por defecto te la guarda en el HOME. Por eso es importante dirigirnos al HOME antes de crear la llave. La ruta se vería algo así: `(/home/<nombre de usuario>/.ssh/id_rsa>)`. Como podemos observar también me crea una carpeta `.ssh`, la cual es una carpeta oculta. Y un archivo `id_rsa` sin extención. No hagas nada simplemente da un **Enter**.
 4. Ahora nos pedirá un **Passphrase**. Es decir, la contraseña adicional de texto que le vas a poner a tu llave pública y privada. Tu decides si colocarle un passphrase o no. Yo en general creo que sí. Pero sino, simple mente da dos **Enter** más.
 5. Y listo. Te indica que tu tu identificación ha sido guardada en: `/home/<nombre de usuario>/.ssh/id_rsa>`. Te indica que tu llave pública ha sido guardada en `/home/<nombre de usuario>/.ssh/id_rsa.pub>`. Y te genera un **fingerprint** y un **randomart image**. Estas son maneras de cofirmar que tu llave es de verdad.
 
 No es suficiente con lo que hicimos. El procedimiento es el mismo en Windows y Linux, pero en Mac no. Porque una vez tienes tu llave la tienes que agregar al entorno. Es decir, que el sistema operativo donde tu trabajas sepa que la llave existe. En Windows o Linux:
 
-1. Tienes que revisar que el servido de llaves SSH este prendido. Para ello utilizamos el comando `eval $(ssh-agend -s)`. Al ejecutarlo te tiene que salir algo así: `Agent pid <numero>`. El `<numero>` indica que el proceso está corriendo. Entonces todo está bien.
+1. Tienes que revisar que el servido de llaves SSH este prendido. Para ello utilizamos el comando `eval $(ssh-agent -s)`. Al ejecutarlo te tiene que salir algo así: `Agent pid <numero>`. El `<numero>` indica que el proceso está corriendo. Entonces todo está bien.
 2. El siguiente paso es agregar la llave a nuestro sistema, decirle que existe. Para ello tenemos que recordar donde la creamos: `(/home/<nombre de usuario>/.ssh/id_rsa>)` es decir en el HOME. Para dirigirnos ahí usamos el comando `cd`.
-3. Una vez en el HOME utilizamos el comando `ssh-add ~/.ssh/id_rsa`. Nos muestara las dos llaves: `id-rsa` y `id-rsa.pub`. Debo agregar la llave privada la que no tiene extensión. Así que volvemos a ejecutar el comando `ssh-add ~/.ssh/id_rsa`. Y listo.
+3. Una vez en el HOME utilizamos el comando `ssh-add ~/.ssh/id_rsa`. Nos muestara las dos llaves: `id-rsa` y `id-rsa.pub`. Debo agregar la llave privada la que no tiene extensión. Así que volvemos a ejecutar el comando `ssh-add ~/.ssh/id_rsa`. Y listo. Se nos mostrará el siguiente mensaje: `Identity added: <ruta de la llave en el home> (<correo electronico>)`.
 
 # Conexión a GitHub con SSH
 
